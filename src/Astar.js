@@ -1,9 +1,7 @@
-import { PriorityQueue } from "./PriorityQueue";
-const operations = require("./operation.js")
-
+import {getEuclidianDistance} from './Operation.js';
 export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
     function heuristic(start, end) {
-        return operations.getEuclidianDistance(arrayOfCoordinates[start], arrayOfCoordinates[end]);
+        return getEuclidianDistance(arrayOfCoordinates[start], arrayOfCoordinates[end]);
     }
 
     // comparing the fScore
@@ -15,13 +13,14 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
     const hasBeenExpand = new Set();
     
     // Initialize the f(n) and g(n)
-    gScore = new Map();
-    gScore.Set(start, 0);
-    fScore = new Map();
-    fScore.Set(start, heuristic);
+    const gScore = new Map();
+    gScore.set(start, 0);
+    const fScore = new Map();
+    fScore.set(start, heuristic(start,end));
 
     // Initialize the queue to expand the path
-    const queue = [start]; // openSet
+    const nodeStart = new Node(start, null);
+    const queue = [nodeStart]; // openSet
 
     while (queue.length > 0) {
         // finding the lowest fScore by sorting it
@@ -29,21 +28,20 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
         // dequeue the queue, get vertex to expand
         const current = queue.shift();
         
-        if (current == end) {
-            const path = [current]
-            let point = current
-            while (point!= start) {
-                path.unshift(point);
+        if (current.index == end) {
+            const path = [current.index]
+            let point = new Node(current.index, current.cameFrom);
+            while (point.index != start) {
+                path.unshift(point.cameFrom.index);
                 point = point.cameFrom;
             }
-            path.unshift(start);
             return path
         }
 
         hasBeenExpand.add(current);
 
-        // get the current neighbor index
-        const neighbours = getIndexOfNeighbour(mapAdjMatrix, current);
+        // get the current neighbor 
+        const neighbours = getNeighbour(mapAdjMatrix, current);
         for (const neighbour of neighbours) {
             if (hasBeenExpand.has(neighbour)) {
                 continue;
@@ -51,20 +49,25 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             if (!queue.includes(neighbour)) {
                 queue.push(neighbour)
             } 
-            neighbour.cameFrom = current;
-            nGScore = mapAdjMatrix[current][neighbour];
-            gScore.Set(neighbour, gScore.Get(current) + mapAdjMatrix[current][neighbour]);
-            fScore.Set(neighbour, nGScore);            
+            const nGScore = mapAdjMatrix[current.index][neighbour.index];
+            gScore.set(neighbour.index, gScore.get(current.index) + mapAdjMatrix[current.index][neighbour.index]);
+            fScore.set(neighbour.index, heuristic(neighbour.index, end) + nGScore);            
         }   
     }
 }
 
+class Node {
+    constructor(index, cameFrom = null) {
+        this.index = index;
+        this.cameFrom = cameFrom;
+    }
+}
 
-function getIndexOfNeighbour(mapAdjMatrix, point) {
+function getNeighbour(mapAdjMatrix, point) {
     const neighbors = [];
     for (let i = 0; i < mapAdjMatrix[0].length; i++) {
-        if (mapAdjMatrix[point][i] != 0 && mapAdjMatrix[point][i] != -1) {
-            neighbors.push(i);
+        if (mapAdjMatrix[point.index][i] != 0 && mapAdjMatrix[point.index][i] != -1) {
+            neighbors.push(new Node(i, point));
         } 
     }
     return neighbors;
