@@ -1,6 +1,8 @@
-class PriorityQueue {
-    // elements[i][0] menyatakan priority element ke i dengan prioritas tertinggi pada nilai terkecil
-    // elements[i][1] menyatakan value element ke i
+export class PriorityQueue {
+    // queue[i][0] menyatakan priority element ke-i yaitu jarak/cost dari start node 
+    //                dengan prioritas tertinggi pada nilai terkecil
+    // queue[i][1] menyatakan currentNode
+    // queue[i][2] menyatakan path untuk mencapai currentNode dari startNode
 
     constructor() {
         this.queue = [];
@@ -8,15 +10,14 @@ class PriorityQueue {
 
     // Insert new element
     enqueue(newElement) {
+        // console.log("newElement = (" + newElement[0] + ", " + newElement[1] + ", " + newElement[2] + ")");
         let done = false;
-        let i = 0;
-        while (!done && i < this.queue.length) {
-            if (newElement[0] < this.queue[i][0]) {
+        for (let i = 0; !done && i < this.queue.length; i++) {
+            if (newElement[0] <= this.queue[i][0]) {
                 // insert element at index i
                 this.queue.splice(i, 0, newElement);
                 done = true;
             }
-            i++;
         }
 
         if (!done) {
@@ -35,12 +36,12 @@ class PriorityQueue {
     }
     // Print Queue
     print() {
-        if (this.isEmpty) console.log("Empty Queue\n");
+        if (this.queue.length == 0) console.log("Empty Queue\n");
         else {
             console.log("{");
-            for (i = 0; i < this.queue.length; i++) {
-                console.log("(" + this.queue[i][0] + ", " + this.queue[i][1] + ")");
-                if (i == this.queue.length -1) console.log("}\n");
+            for (let i = 0; i < this.queue.length; i++) {
+                console.log("0 = " + this.queue[i][0] + ", 1 = " + this.queue[i][1] + ", 2 = " + this.queue[i][2] + ")");
+                if (i == this.queue.length - 1) console.log("}\n");
                 else console.log(", ");
             }
         }
