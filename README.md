@@ -18,3 +18,6 @@ Tugas Kecil 3:
 
 6. Submisi bisa dilakukan pada tautan drive yang tersedia pada spesifikasi. Yang perlu dikumpulkan adalah laporan dengan format Tucil3_NIM.pdf apabila sendiri atau Tucil3_NIM1_NIM2.pdf apabila berkelompok dan berisi tautan github ataupun drive program kalian. Apabila lintas kelas, submisi boleh di lakukan di salah satu drive kelas.
 7. Adapun pertanyaan lain terkait Tugas Kecil 3, bisa ditanyakan melalui sheet https://bit.ly/TugasStimaQnA 
+
+<br><br>
+Kalau "Can not use import statement outside a module" tambahin "type": "module" di package.json
