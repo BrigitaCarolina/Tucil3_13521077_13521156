@@ -49,9 +49,8 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             if (!queue.includes(neighbour)) {
                 queue.push(neighbour)
             } 
-            const nGScore = mapAdjMatrix[current.index][neighbour.index];
             gScore.set(neighbour.index, gScore.get(current.index) + mapAdjMatrix[current.index][neighbour.index]);
-            fScore.set(neighbour.index, heuristic(neighbour.index, end) + nGScore);            
+            fScore.set(neighbour.index, heuristic(neighbour.index, end) + neighbour.index.gScore);            
         }   
     }
 }
