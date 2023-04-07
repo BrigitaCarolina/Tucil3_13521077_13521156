@@ -1,11 +1,13 @@
+var routeMarkers = [];
+var directionsService;
+var directionsRenderer;
+
 function initMap() {
-  // Create a map object and specify the DOM element for display.
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -6.891725401281734, lng: 107.61046193855061 },
-    zoom: 15,
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: { lat: -7.265757, lng: 112.734146 }
   });
 
-  // Create an array of markers.
   const markers = [
     {
       position: { lat: -6.885196682648061, lng: 107.61370535846539 },
@@ -37,10 +39,9 @@ function initMap() {
     },
   ];
 
-  const directionsService = new google.maps.DirectionsService();
-  const directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map,
-  });
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
 
   // Create markers for each location.
   markers.forEach((marker) => {
@@ -52,9 +53,43 @@ function initMap() {
 
     // Add accessibility text to marker.
     newMarker.addListener("click", () => {
+      addMarker(marker.position, map);
       new google.maps.InfoWindow({
         content: marker.position,
       }).open(map, newMarker);
     });
   });
+
+  google.maps.event.addListener(map, 'click', function (event) {
+    addMarker(event.latLng, map);
+  });
+
+  function addMarker(location, map) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+    routeMarkers.push(marker);
+
+    if (routeMarkers.length == 2) {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+    }
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    directionsService.route(
+      {
+        origin: routeMarkers[0].getPosition(),
+        destination: routeMarkers[1].getPosition(),
+        travelMode: 'DRIVING'
+      },
+      function (response, status) {
+        window.alert(status);
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+  }
 }
