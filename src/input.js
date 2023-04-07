@@ -31,6 +31,7 @@ export function readFileCoordinate(filePath) {
 }
 
 export function validMap(adjMatrix) {
+    console.log(adjMatrix);
     for (let i = 0; i < adjMatrix.length; i++) {
         for (let j = 0; j < adjMatrix[0].length; j++) {
             if (Number.isNaN(adjMatrix[i][j]) || adjMatrix[i][j] < -1) {
