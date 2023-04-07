@@ -1,7 +1,7 @@
 import { PriorityQueue } from "./PriorityQueue.js";
 import { UCS, distance } from "./UCS.js"
 import { Astar } from "./Astar.js";
-import { readFile, validMap, validNode } from "./input.js";
+import { readFile, readFileCoordinate, validMap, validNode } from "./input.js";
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
@@ -74,6 +74,15 @@ const mapAdjMatrix = [
 
 // Input file
 //const prompt = require("prompt-sync")();
+var fileName = prompt('Input file name (coordinate) without txt extension: ');
+var arrayOfCoordinates1;
+
+try {
+    arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
+} catch (err) {
+    console.log("File not found");
+    console.log("Make sure the .txt file is stored in the test folder");
+}
 
 var fileName = prompt('Input file name : ');
 var mapAdjMatrix;

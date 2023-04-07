@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.15.1"
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "prompt-sync": "^4.2.0"
   }
 }
