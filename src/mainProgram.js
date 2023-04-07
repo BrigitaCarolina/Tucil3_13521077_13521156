@@ -4,6 +4,7 @@ import { Astar } from "./Astar.js";
 import { displayMatrix } from "./operation.js";
 import { displayCoordinate } from "./operation.js";
 
+
 // Main Program
 console.log("Entering program...\n");
 
