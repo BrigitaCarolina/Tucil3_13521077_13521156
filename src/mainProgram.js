@@ -6,6 +6,7 @@ import promptSync from 'prompt-sync';
 const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
 import { displayCoordinate } from "./operation.js";
+import path from 'path';
 
 
 // Main Program
@@ -73,21 +74,24 @@ const mapAdjMatrix = [
 
 // Input file
 //const prompt = require("prompt-sync")();
-var fileName = prompt('Input file name (coordinate) without txt extension: ');
-var arrayOfCoordinates1;
+// var fileName = prompt('Input file name (coordinate) without txt extension: ');
+// var arrayOfCoordinates1;
 
-try {
-    arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
-} catch (err) {
-    console.log("File not found");
-    console.log("Make sure the .txt file is stored in the test folder");
-}
+// try {
+//     arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
+// } catch (err) {
+//     console.log("File not found");
+//     console.log("Make sure the .txt file is stored in the test folder");
+// }
 
 var fileName = prompt('Input file name : ');
+const cwd = process.cwd();
+const parent = path.dirname(cwd);
 var mapAdjMatrix;
 
 try {
-    mapAdjMatrix = readFile("test/" + fileName + ".txt");
+    console.log(parent + "\\test\\" + fileName + ".txt");
+    mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
 } catch (err) {
     console.log("File not found");
     console.log("Make sure the .txt file is stored in the test folder");
@@ -111,7 +115,7 @@ while (!validNode(goalNode, mapAdjMatrix)) {
 }
 
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
-const path = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
+const pathAstar = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
 
 if (resultPath == "") console.log("No path found\n");
 else {
@@ -122,6 +126,6 @@ else {
 }
 
 console.log("\n=================== A STAR ===================== ");
-const AsDistance = distance(path, mapAdjMatrix);
+const AsDistance = distance(pathAstar, mapAdjMatrix);
 console.log("Path found with total distance " + AsDistance);
 console.log("Shortest path : " + path);
