@@ -1,45 +1,32 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from "url";
+import { readFileFromWeb } from './input.js'
+import { UCS } from './UCS.js';
+
 var routeMarkers = [];
 var directionsService;
 var directionsRenderer;
 var waypoints = [];
+var routeIdx = [];
+var hasil;
+var markers;
 
-function initMap() {
+export function initMap() {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const parentDir = path.resolve(__dirname, '..');
+  window.alert('Here');
+
+  hasil = readFileFromWeb(path.join(parentDir, 'test', "webinput.txt"))
+
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: new google.maps.LatLng(-6.88490548204114, 107.61148290864757),
+    zoom: 12,
+    center: new google.maps.LatLng(hasil[0].lat, hasil[0].lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
 
-  const markers = [
-    {
-      position: { lat: -6.885196682648061, lng: 107.61370535846539 },
-      title: "Simpang Dago",
-    },
-    {
-      position: { lat: -6.898675616317532, lng: 107.61281708483281 },
-      title: "Simpang A",
-    },
-    {
-      position: { lat: -6.88490548204114, lng: 107.61148290864757 },
-      title: "Babakan Siliwangi",
-    },
-    {
-      position: { lat: -6.884740729538353, lng: 107.6044532507617 },
-      title: "Cihampelas Atas",
-    },
-    {
-      position: { lat: -6.900180058993096, lng: 107.60455236144489 },
-      title: "Cihampelas Bawah",
-    },
-    {
-      position: { lat: -6.9002309994850215, lng: 107.59738668882694 },
-      title: "RSHS",
-    },
-    {
-      position: { lat: -6.883524334076055, lng: 107.61435778474123 },
-      title: "Tubagus Ismail",
-    },
-  ];
+  markers = hasil[1];
 
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer({
@@ -57,6 +44,7 @@ function initMap() {
 
     // Add accessibility text to marker.
     newMarker.addListener("click", () => {
+      routeIdx.push(markers.indexOf(marker));
       addMarker(marker.position, map);
       new google.maps.InfoWindow({
         content: marker.title,
@@ -72,10 +60,12 @@ function addMarker(location, map) {
   });
   routeMarkers.push(marker);
 
-  if (routeMarkers.length == 4) {
-    for (var i = 0; i < routeMarkers.length; i++) {
+  if (routeMarkers.length == 2) {
+    let UCSPath = UCS(hasil[2], routeIdx[0], routeIdx[1]);
+
+    for (var i = 0; i < UCSPath.length; i++) {
       waypoints.push({
-        location: routeMarkers[i].getPosition(),
+        location: markers[UCSPath[i]].getPosition(),
         stopover: true
       });
     }
@@ -98,3 +88,5 @@ function calculateAndDisplayRoute(waypoints) {
     }
   });
 }
+
+initMap();

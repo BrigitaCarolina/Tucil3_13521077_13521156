@@ -106,7 +106,6 @@ export function readFileFromWeb(filePath) {
                     lng: splitted[1]
                 }
             } else {
-                const splitted = lines[i].trim().split(/\s+/).map(String);
                 marker.push({
                     position: positions,
                     title: splitted
