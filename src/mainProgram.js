@@ -7,6 +7,7 @@ const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
 import { displayCoordinate } from "./operation.js";
 
+
 // Main Program
 console.log("Entering program...\n");
 

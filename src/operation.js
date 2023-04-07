@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export function getEuclidianDistance (coordinate1, coordinate2) {
     const x1 = coordinate1.x;
     const y1 = coordinate1.y;
@@ -27,4 +29,15 @@ export function displayCoordinate (array) {
         console.log(i + ": " + array[i].x.toString() + ", " + array[i].y.toString());
     }
     console.log();
+}
+
+export function readCoordinate(data1) {
+    fs.readFile('test1.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        data1 = data;
+        console.log(data);
+    });
 }
