@@ -1,30 +1,25 @@
-import {getEuclidianDistance} from './Operation.js';
+import {getEuclidianDistance} from './operation.js';
 export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
     function heuristic(start, end) {
         return getEuclidianDistance(arrayOfCoordinates[start], arrayOfCoordinates[end]);
     }
 
-    // comparing the fScore
-    function compare(index1, index2) {
-        return index1.fScore - index2.fScore;
-    }
-    
-    // initialize the path (element of path: index)
     const hasBeenExpand = new Set();
     
-    // Initialize the f(n) and g(n)
-    const gScore = new Map();
-    gScore.set(start, 0);
-    const fScore = new Map();
-    fScore.set(start, heuristic(start,end));
-
+    
     // Initialize the queue to expand the path
     const nodeStart = new Node(start, null);
-    const queue = [nodeStart]; // openSet
+    const queue = [nodeStart] // openSet
 
+    // Initialize the f(n) and g(n)
+    const gScore = new Map();
+    gScore.set(nodeStart, 0);
+    const fScore = new Map();
+    fScore.set(nodeStart, heuristic(start,end));
+    
     while (queue.length > 0) {
         // finding the lowest fScore by sorting it
-        queue.sort(compare);
+        queue.sort((node1, node2) => fScore.get(node1) - fScore.get(node2));
         // dequeue the queue, get vertex to expand
         const current = queue.shift();
         
@@ -49,8 +44,8 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             if (!queue.includes(neighbour)) {
                 queue.push(neighbour)
             } 
-            gScore.set(neighbour.index, gScore.get(current.index) + mapAdjMatrix[current.index][neighbour.index]);
-            fScore.set(neighbour.index, heuristic(neighbour.index, end) + neighbour.index.gScore);            
+            gScore.set(neighbour, gScore.get(current) + mapAdjMatrix[current.index][neighbour.index]);
+            fScore.set(neighbour, heuristic(neighbour.index, end) + gScore.get(neighbour));            
         }   
     }
 }
