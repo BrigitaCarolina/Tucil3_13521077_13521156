@@ -9,7 +9,6 @@ export function readFile(filePath) {
     // Split lines
     for (let i = 0; i < lines.length; i++) {
         const splitted = lines[i].trim().split(/\s+/).map(Number);
-        console.log(splitted[0]);
         result.push(splitted);
     }
     
@@ -18,7 +17,12 @@ export function readFile(filePath) {
 
 export function readFileCoordinate(filePath) {
     const result = [];
-    const contents = fs.readFileSync(filePath, 'utf-8');
+    let contents;
+    try {
+        contents = fs.readFileSync(filePath, 'utf-8');
+    } catch (err) {
+        throw new Error("File not found\nMake sure the .txt file is stored in the test folder") 
+    }
     // Read per line
     const lines = contents.trim().split('\n');
     // Split lines
@@ -30,7 +34,6 @@ export function readFileCoordinate(filePath) {
 }
 
 export function validMap(adjMatrix) {
-    console.log(adjMatrix);
     for (let i = 0; i < adjMatrix.length; i++) {
         for (let j = 0; j < adjMatrix[0].length; j++) {
             if (Number.isNaN(adjMatrix[i][j]) || adjMatrix[i][j] < -1) {

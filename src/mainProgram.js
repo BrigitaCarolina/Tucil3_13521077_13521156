@@ -7,6 +7,7 @@ const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
 import { displayCoordinate } from "./operation.js";
 import path from 'path';
+import { fileURLToPath } from "url";
 
 
 // Main Program
@@ -71,48 +72,49 @@ console.log("Entering program...\n");
 ]
 */
 
-
-
-const cwd = process.cwd();
-const parent = path.dirname(cwd);
 var arrayOfCoordinates;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const parentDir = path.resolve(__dirname, '..');
 
 // // Input file
 var fileName = prompt('Input coordinate file name (without the .txt extension): ');
 var valid;
 do {
+    var filePath = path.join(parentDir, 'test', fileName + '.txt');
     valid = true;
     try {
-        console.log(parent + "\\test\\" + fileName + ".txt");
-        arrayOfCoordinates = readFileCoordinate(parent + "\\test\\" + fileName + ".txt");
+        arrayOfCoordinates = readFileCoordinate(filePath);
     } catch (err) {
-        console.log("File not found");
-        console.log("Make sure the .txt file is stored in the test folder");
-        fileName = prompt('Input file name : ');
+        console.log(err);
+        fileName = prompt('Input file name (without the .txt extension): ');
         valid = false;
     }
 } while (!valid);
-
+            
 displayCoordinate(arrayOfCoordinates);
 // Input file
 var fileName = prompt('Input adjacency map file name (without the .txt extension): ');
 var mapAdjMatrix;
 var valid;
 do {
+    var filePath = path.join(parentDir, 'test', fileName + '.txt');
     valid = true;
     try {
-        mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
+        mapAdjMatrix = readFile(filePath);
     } catch (err) {
         console.log("File not found");
         console.log("Make sure the .txt file is stored in the test folder");
-        fileName = prompt('Input file name : ');
+        fileName = prompt('Input adjacency map file name (without the .txt extension): ');
         valid = false;
     }
 } while (!valid);
 
 while (!validMap(mapAdjMatrix)) {
-    fileName = prompt("Input file name : ");
-    mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
+    var filePath = path.join(parentDir, 'test', fileName + '.txt');
+    fileName = prompt("Input adjacency map file name (without the .txt extension): ");
+    mapAdjMatrix = readFile(filePath);
 }
 displayMatrix(mapAdjMatrix);
 

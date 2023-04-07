@@ -30,14 +30,3 @@ export function displayCoordinate (array) {
     }
     console.log();
 }
-
-export function readCoordinate(data1) {
-    fs.readFile('test1.txt', 'utf8', (err, data) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        data1 = data;
-        console.log(data);
-    });
-}
