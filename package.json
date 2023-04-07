@@ -1,0 +1,15 @@
+{
+  "name": "tucil3_13521077_13521156",
+  "version": "1.0.0",
+  "description": "package.json",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.15.1"
+  }
+}

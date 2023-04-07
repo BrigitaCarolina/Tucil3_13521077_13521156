@@ -1,11 +1,12 @@
 import { PriorityQueue } from "./PriorityQueue.js";
 import { UCS, distance } from "./UCS.js"
+import { Astar } from "./Astar.js";
 
 // Main Program
 console.log("Entering program...\n");
 
 // Array to find straight line distance
-const arrayOfCoordinates = [{x: 0, y: 0}, {x: 1, y: 1}, {x:2, y:2}, {x:3, y:3}, {x:4, y:4}, {x:5, y:5}, {x:6, y:6}];
+const arrayOfCoordinates = [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }, { x: 6, y: 6 }];
 
 // ceritanya udah diitung (jarak std)
 const matrixOfSTD = [
@@ -32,6 +33,7 @@ const startNode = 0;
 const goalNode = 5;
 
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
+const path = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
 
 if (resultPath == "") console.log("No path found\n");
 else {
@@ -40,3 +42,9 @@ else {
     console.log("Shortest path : " + Array.from(resultPath.values()));
     console.log("\n");
 }
+
+console.log(" =================== A STAR ===================== ");
+const AsDistance = distance(path, mapAdjMatrix);
+console.log("Path found with total distance " + AsDistance);
+console.log("Shortest path : " + path);
+console.log("\n");
