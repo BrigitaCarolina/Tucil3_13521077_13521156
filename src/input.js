@@ -15,6 +15,21 @@ export function readFile(filePath) {
     return result;
 }
 
+export function readFileCoordinate(filePath) {
+    const result = [];
+    const contents = fs.readFileSync(filePath, 'utf-8');
+    // Read per line
+    const lines = contents.trim().split('\n');
+    console.log(lines);
+    // Split lines
+    for (let i = 0; i < lines.length; i++) {
+        const splitted = lines[i].trim().split(/\s+/).map(Number);
+        result.push(splitted);
+    }
+
+    return result;
+}
+
 export function validMap(adjMatrix) {
     console.log(adjMatrix);
     for (let i = 0; i < adjMatrix.length; i++) {

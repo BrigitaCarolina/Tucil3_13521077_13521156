@@ -1,7 +1,7 @@
 import { PriorityQueue } from "./PriorityQueue.js";
 import { UCS, distance } from "./UCS.js"
 import { Astar } from "./Astar.js";
-import { readFile, validMap, validNode } from "./input.js";
+import { readFile, readFileCoordinate, validMap, validNode } from "./input.js";
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
