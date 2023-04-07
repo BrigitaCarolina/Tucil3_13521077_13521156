@@ -74,31 +74,32 @@ const mapAdjMatrix = [
 
 // Input file
 //const prompt = require("prompt-sync")();
-var fileName = prompt('Input file name (coordinate) without txt extension: ');
-var arrayOfCoordinates1;
+// var fileName = prompt('Input file name (coordinate) without txt extension: ');
+// var arrayOfCoordinates1;
 
-try {
-    arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
-} catch (err) {
-    console.log("File not found");
-    console.log("Make sure the .txt file is stored in the test folder");
-}
-
-var fileName = prompt('Input file name : ');
 const cwd = process.cwd();
 const parent = path.dirname(cwd);
 var mapAdjMatrix;
 
-try {
-    mapAdjMatrix = readFile("test/" + fileName + ".txt");
-} catch (err) {
-    console.log("File not found");
-    console.log("Make sure the .txt file is stored in the test folder");
-}
+// Input file
+var fileName = prompt('Input file name : ');
+var mapAdjMatrix;
+var valid;
+do {
+    valid = true;
+    try {
+        mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
+    } catch (err) {
+        console.log("File not found");
+        console.log("Make sure the .txt file is stored in the test folder");
+        fileName = prompt('Input file name : ');
+        valid = false;
+    }
+} while (!valid);
 
 while (!validMap(mapAdjMatrix)) {
     fileName = prompt("Input file name : ");
-    mapAdjMatrix = readFile("test/" + fileName + ".txt");
+    mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
 }
 displayMatrix(mapAdjMatrix);
 
