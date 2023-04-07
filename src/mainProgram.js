@@ -1,6 +1,9 @@
 import { PriorityQueue } from "./PriorityQueue.js";
 import { UCS, distance } from "./UCS.js"
 import { Astar } from "./Astar.js";
+import { readFile, validMap, validNode } from "./input.js";
+import promptSync from 'prompt-sync';
+const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
 import { displayCoordinate } from "./operation.js";
 
@@ -44,6 +47,7 @@ displayCoordinate(arrayOfCoordinates);
 //     [5, -1, -1, 4, 0, 10],
 //     [-1, 6, -1, -1, 10, 0]
 // ]
+/*
 const mapAdjMatrix = [
     [-1, 47 , -1, -1,  -1,  105,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1],  
     [47 , -1, 62,  114,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1],  
@@ -66,11 +70,37 @@ const mapAdjMatrix = [
     [-1, -1, -1, -1,  -1,  -1,  -1,  -1,  -1,  -1,  47 ,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1],  
     [-1, -1, -1, -1,  -1,  -1,  24 ,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  -1,  78 ,  -1,  -1]
 ]
+*/
+
+// Input file
+//const prompt = require("prompt-sync")();
+
+var fileName = prompt('Input file name : ');
+var mapAdjMatrix;
+
+try {
+    mapAdjMatrix = readFile("test/" + fileName + ".txt");
+} catch (err) {
+    console.log("File not found");
+    console.log("Make sure the .txt file is stored in the test folder");
+}
+
+while (!validMap(mapAdjMatrix)) {
+    fileName = prompt("Input file name : ");
+    mapAdjMatrix = readFile("test/" + fileName + ".txt");
+}
 displayMatrix(mapAdjMatrix);
 
 
-const startNode = 0;
-const goalNode = 14;
+console.log("There is", mapAdjMatrix.length, "node : 0 -", mapAdjMatrix[0].length - 1);
+var startNode = prompt("Input start node : ");
+while (!validNode(startNode, mapAdjMatrix)) {
+    startNode = prompt("Input start node : ");
+}
+var goalNode = prompt("Input goal node : ");
+while (!validNode(goalNode, mapAdjMatrix)) {
+    goalNode = prompt("Input goal node : ");
+}
 
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
 const path = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
@@ -81,11 +111,9 @@ else {
     const resultDistance = distance(resultPath, mapAdjMatrix);
     console.log("Path found with total distance " + resultDistance);
     console.log("Shortest path : " + Array.from(resultPath.values()));
-    console.log("\n");
 }
 
-console.log(" =================== A STAR ===================== ");
+console.log("\n=================== A STAR ===================== ");
 const AsDistance = distance(path, mapAdjMatrix);
 console.log("Path found with total distance " + AsDistance);
 console.log("Shortest path : " + path);
-console.log("\n");
