@@ -1,11 +1,13 @@
 var routeMarkers = [];
 var directionsService;
 var directionsRenderer;
+var waypoints = [];
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: { lat: -6.89067290133392, lng: 107.61002829330324 }
+    zoom: 15,
+    center: new google.maps.LatLng(-6.88490548204114, 107.61148290864757),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
 
   const markers = [
@@ -40,8 +42,10 @@ function initMap() {
   ];
 
   directionsService = new google.maps.DirectionsService();
-  directionsRenderer = new google.maps.DirectionsRenderer();
-  directionsRenderer.setMap(map);
+  directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map,
+    suppressMarkers: true
+  });
 
   // Create markers for each location.
   markers.forEach((marker) => {
@@ -55,41 +59,42 @@ function initMap() {
     newMarker.addListener("click", () => {
       addMarker(marker.position, map);
       new google.maps.InfoWindow({
-        content: marker.position,
+        content: marker.title,
       }).open(map, newMarker);
     });
   });
+}
 
-  google.maps.event.addListener(map, 'click', function (event) {
-    addMarker(event.latLng, map);
+function addMarker(location, map) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
   });
+  routeMarkers.push(marker);
 
-  function addMarker(location, map) {
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-    routeMarkers.push(marker);
-
-    if (routeMarkers.length == 2) {
-      calculateAndDisplayRoute(directionsService, directionsRenderer);
-    }
-  }
-
-  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-    directionsService.route(
-      {
-        origin: routeMarkers[0].getPosition(),
-        destination: routeMarkers[1].getPosition(),
-        travelMode: 'DRIVING'
-      },
-      function (response, status) {
-        window.alert(status);
-        if (status === 'OK') {
-          directionsRenderer.setDirections(response);
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
+  if (routeMarkers.length == 4) {
+    for (var i = 0; i < routeMarkers.length; i++) {
+      waypoints.push({
+        location: routeMarkers[i].getPosition(),
+        stopover: true
       });
+    }
+    calculateAndDisplayRoute(waypoints);
   }
+}
+
+function calculateAndDisplayRoute(waypoints) {
+  directionsService.route({
+    origin: waypoints[0].location,
+    destination: waypoints[waypoints.length - 1].location,
+    waypoints: waypoints.slice(1, -1),
+    optimizeWaypoints: true,
+    travelMode: 'DRIVING'
+  }, function (response, status) {
+    if (status === 'OK') {
+      directionsRenderer.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
 }
