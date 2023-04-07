@@ -1,4 +1,6 @@
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from "url";
 
 // const fs = require('fs');
 export function readFile(filePath) {
@@ -69,3 +71,67 @@ export function validNode(inputNode, adjMatrix) {
         return false;
     } else return true;
 }
+
+// const markers = [
+//     {
+//       position: { lat: -6.885196682648061, lng: 107.61370535846539 },
+//       title: "Simpang Dago",
+//     },
+
+export function readFileFromWeb(filePath) {
+    let center;
+    const marker = [];
+    const adjmatrix = [];
+    const contents = fs.readFileSync(filePath, 'utf-8');
+    // Read per line
+    const lines = contents.trim().split('\n');
+    let simpul;
+    let positions;
+    // Split lines
+    for (let i = 0; i < lines.length; i++) {
+        if (i == 0) {
+            const splitted = lines[i].trim().split(/\s+/).map(Number);
+            simpul = splitted[0];
+        } else if (i == 1) {
+            const splitted = lines[i].trim().split(/\s+/).map(Number);
+            center = {
+                lat: splitted[0],
+                lng: splitted[1] 
+            }
+        } else if (i <= simpul * 2 + 1) {
+            if (i % 2 == 0) {
+                const splitted = lines[i].trim().split(/\s+/).map(Number);
+                positions = {
+                    lat: splitted[0],
+                    lng: splitted[1]
+                }
+            } else {
+                const splitted = lines[i].trim().split(/\s+/).map(String);
+                marker.push({
+                    position: positions,
+                    title: splitted
+                });
+            }
+        } else {
+            const splitted = lines[i].trim().split(/\s+/).map(Number);
+            adjmatrix.push(splitted);
+        }
+    }
+    // console.log(center);
+    // console.log(marker);
+    // console.log(adjmatrix);
+
+    return [center, marker, adjmatrix]; 
+}
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const parentDir = path.resolve(__dirname, '..');
+
+const hasil = readFileFromWeb(path.join(parentDir, 'test', "webinput.txt"))
+const center = hasil[0];
+console.log(center);
+const marker = hasil[1];
+console.log(marker);
+const adjmatrix = hasil[2];
+console.log(adjmatrix);

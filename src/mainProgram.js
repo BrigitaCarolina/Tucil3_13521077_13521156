@@ -78,7 +78,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const parentDir = path.resolve(__dirname, '..');
 
-// // Input file
+// // Input file        
 var fileName = prompt('Input coordinate file name (without the .txt extension): ');
 var valid;
 do {
