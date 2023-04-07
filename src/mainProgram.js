@@ -72,17 +72,20 @@ const mapAdjMatrix = [
 */
 
 // Input file
-//const prompt = require("prompt-sync")();
-
 var fileName = prompt('Input file name : ');
 var mapAdjMatrix;
-
-try {
-    mapAdjMatrix = readFile("test/" + fileName + ".txt");
-} catch (err) {
-    console.log("File not found");
-    console.log("Make sure the .txt file is stored in the test folder");
-}
+var valid;
+do {
+    valid = true;
+    try {
+        mapAdjMatrix = readFile("test/" + fileName + ".txt");
+    } catch (err) {
+        console.log("File not found");
+        console.log("Make sure the .txt file is stored in the test folder");
+        fileName = prompt('Input file name : ');
+        valid = false;
+    }
+} while (!valid);
 
 while (!validMap(mapAdjMatrix)) {
     fileName = prompt("Input file name : ");
