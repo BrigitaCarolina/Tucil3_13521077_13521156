@@ -6,13 +6,13 @@ export function readFile(filePath) {
     const contents = fs.readFileSync(filePath, 'utf-8');
     // Read per line
     const lines = contents.trim().split('\n');
-    console.log(lines);
     // Split lines
     for (let i = 0; i < lines.length; i++) {
         const splitted = lines[i].trim().split(/\s+/).map(Number);
+        console.log(splitted[0]);
         result.push(splitted);
     }
-
+    
     return result;
 }
 
@@ -21,13 +21,11 @@ export function readFileCoordinate(filePath) {
     const contents = fs.readFileSync(filePath, 'utf-8');
     // Read per line
     const lines = contents.trim().split('\n');
-    console.log(lines);
     // Split lines
     for (let i = 0; i < lines.length; i++) {
         const splitted = lines[i].trim().split(/\s+/).map(Number);
-        result.push(splitted);
+        result.push({x: splitted[0], y: splitted[1]});
     }
-
     return result;
 }
 
