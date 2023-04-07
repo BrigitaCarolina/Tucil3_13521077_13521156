@@ -74,15 +74,15 @@ const mapAdjMatrix = [
 
 // Input file
 //const prompt = require("prompt-sync")();
-// var fileName = prompt('Input file name (coordinate) without txt extension: ');
-// var arrayOfCoordinates1;
+var fileName = prompt('Input file name (coordinate) without txt extension: ');
+var arrayOfCoordinates1;
 
-// try {
-//     arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
-// } catch (err) {
-//     console.log("File not found");
-//     console.log("Make sure the .txt file is stored in the test folder");
-// }
+try {
+    arrayOfCoordinates1 = readFileCoordinate("test/" + fileName + ".txt");
+} catch (err) {
+    console.log("File not found");
+    console.log("Make sure the .txt file is stored in the test folder");
+}
 
 var fileName = prompt('Input file name : ');
 const cwd = process.cwd();
@@ -90,8 +90,7 @@ const parent = path.dirname(cwd);
 var mapAdjMatrix;
 
 try {
-    console.log(parent + "\\test\\" + fileName + ".txt");
-    mapAdjMatrix = readFile(parent + "\\test\\" + fileName + ".txt");
+    mapAdjMatrix = readFile("test/" + fileName + ".txt");
 } catch (err) {
     console.log("File not found");
     console.log("Make sure the .txt file is stored in the test folder");
