@@ -33,6 +33,14 @@ export function readFileCoordinate(filePath) {
     return result;
 }
 
+export function validCoordinate(arrayOfCoordinates) {
+    for (let i = 0; i < arrayOfCoordinates.length; i++) {
+        if (Number.isNaN(arrayOfCoordinates[i].x) || Number.isNaN(arrayOfCoordinates[i].y)) {
+            return false;
+        }
+    }
+    return true;
+}
 export function validMap(adjMatrix) {
     for (let i = 0; i < adjMatrix.length; i++) {
         for (let j = 0; j < adjMatrix[0].length; j++) {

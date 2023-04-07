@@ -1,7 +1,7 @@
 import { PriorityQueue } from "./PriorityQueue.js";
 import { UCS, distance } from "./UCS.js"
 import { Astar } from "./Astar.js";
-import { readFile, readFileCoordinate, validMap, validNode } from "./input.js";
+import { readFile, readFileCoordinate, validCoordinate, validMap, validNode } from "./input.js";
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
 import { displayMatrix } from "./operation.js";
@@ -88,10 +88,16 @@ do {
         arrayOfCoordinates = readFileCoordinate(filePath);
     } catch (err) {
         console.log(err);
-        fileName = prompt('Input file name (without the .txt extension): ');
+        fileName = prompt('Input coordinate file name (without the .txt extension): ');
         valid = false;
     }
 } while (!valid);
+
+while (!validCoordinate(arrayOfCoordinates)) {
+    var filePath = path.join(parentDir, 'test', fileName + '.txt');
+    fileName = prompt("Input coordinate file name (without the .txt extension): ");
+    arrayOfCoordinates = readFileCoordinate(filePath);
+}
             
 displayCoordinate(arrayOfCoordinates);
 // Input file
