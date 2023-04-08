@@ -7,6 +7,20 @@ var waypoints = [];
 var waypoints2 = [];
 var routeIdx = [];
 
+function initMapBlank() {
+  var map11 = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: new google.maps.LatLng(-6.89067290133392, 107.61002829330324),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+  });
+  var map22 = new google.maps.Map(document.getElementById("map2"), {
+    zoom: 15,
+    center: new google.maps.LatLng(-6.89067290133392, 107.61002829330324),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+  });
+
+}
+
 function initMap(center, markers, adjmatrix) {
   console.log(adjmatrix);
   var map1 = new google.maps.Map(document.getElementById("map"), {

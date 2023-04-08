@@ -2,6 +2,7 @@ const fileInput = document.getElementById('file-input');
 const fileContents = document.getElementById('file-contents');
 
 function read() {
+    initMapBlank();
 fileInput.addEventListener('change', (event) => {
   const file = event.target.files[0];
   
