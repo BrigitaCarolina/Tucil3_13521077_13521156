@@ -36,35 +36,35 @@ function initMap(center, markers, adjmatrix) {
       
       // Create markers for each location.
       markers.forEach((marker) => {
-        const newMarker = new google.maps.Marker({
+        const newMarker1 = new google.maps.Marker({
           position: marker.position,
           map: map1,
           title: marker.title,
         });
         
         // Add accessibility text to marker.
-        newMarker.addListener("click", () => {
+        newMarker1.addListener("click", () => {
           routeIdx.push(markers.indexOf(marker));
           addMarker(marker.position, map1, adjmatrix, markers, 1);
           new google.maps.InfoWindow({
             content: marker.title,
-          }).open(map1, newMarker);
+          }).open(map1, newMarker1);
         });
     });
       markers.forEach((marker) => {
-        const newMarker = new google.maps.Marker({
+        const newMarker2 = new google.maps.Marker({
           position: marker.position,
           map: map2,
           title: marker.title,
         });
         
         // Add accessibility text to marker.
-        newMarker.addListener("click", () => {
+        newMarker2.addListener("click", () => {
           routeIdx.push(markers.indexOf(marker));
           addMarker(marker.position, map2, adjmatrix, markers, 2);
           new google.maps.InfoWindow({
             content: marker.title,
-          }).open(map2, newMarker);
+          }).open(map2, newMarker2);
         });
     });
 }
@@ -105,6 +105,7 @@ function addMarker(location, map, adj, markers, id) {
       calculateAndDisplayRoute(waypoints, 1);
     } 
     if (routeMarkers2.length == 2) {
+        console.log(array);
         let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
         for (var i = 0; i < AstarPath.length; i++) {
           waypoints2.push({

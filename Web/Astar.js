@@ -55,6 +55,7 @@ function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
                 queue.push(neighbour)
             } 
             gScore.set(neighbour, gScore.get(current) + mapAdjMatrix[current.index][neighbour.index]);
+            console.log("neighbor index" + neighbour.index)
             fScore.set(neighbour, heuristic(neighbour.index, end, arrayOfCoordinates) + gScore.get(neighbour));            
         }   
     }
@@ -70,6 +71,7 @@ class Node {
 
 function getNeighbour(mapAdjMatrix, point) {
     const neighbors = [];
+    console.log(mapAdjMatrix[0].length);
     for (let i = 0; i < mapAdjMatrix[0].length; i++) {
         if (mapAdjMatrix[point.index][i] != 0 && mapAdjMatrix[point.index][i] != -1) {
             neighbors.push(new Node(i, point));

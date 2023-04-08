@@ -38,7 +38,6 @@ fileInput.addEventListener('change', (event) => {
                 }
             } else {
                 splitted = lines[i].trim().split().map(String);
-                console.log(splitted);
                 marker.push({
                     position: positions,
                     title: splitted[0]
@@ -51,8 +50,6 @@ fileInput.addEventListener('change', (event) => {
     }
     // console.log(center)
     // console.log(marker)
-    console.log(adjmatrix)
-    initMap(center, marker, adjmatrix);
     initMap(center, marker, adjmatrix);
   });
 
