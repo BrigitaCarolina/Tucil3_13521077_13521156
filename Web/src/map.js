@@ -80,6 +80,7 @@ function addMarker(location, map, adj, markers, id) {
     routeMarkers2.push(marker);
   }
   console.log(id);
+  console.log("routemarker1" + routeMarkers1.length);
   
   // if (routeMarkers.length == 4) {
     //   for (var i = 0; i < routeMarkers.length; i++) {
@@ -102,9 +103,10 @@ function addMarker(location, map, adj, markers, id) {
           location: markers[UCSPath[i]].position,
           stopover: true
         });
-      calculateAndDisplayRoute(waypoints, 1);
-    } 
-    if (routeMarkers2.length == 2) {
+        routeMarkers1.length = 0;
+        calculateAndDisplayRoute(waypoints, 1);
+      } 
+    } else if (routeMarkers2.length == 2) {
         console.log(array);
         let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
         for (var i = 0; i < AstarPath.length; i++) {
@@ -114,14 +116,15 @@ function addMarker(location, map, adj, markers, id) {
           });
         }
         console.log("Astar")
+        routeMarkers2.length = 0;
         calculateAndDisplayRoute(waypoints2, 2);
 
     }
     
 }
-}
 
 function calculateAndDisplayRoute(waypoints, id) {
+  console.log(id)
   if (id == 1) {
     directionsService1.route({
       origin: waypoints[0].location,
