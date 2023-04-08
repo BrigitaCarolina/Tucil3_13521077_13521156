@@ -6,6 +6,8 @@ var directionsRenderer;
 var waypoints = [];
 var waypoints2 = [];
 var routeIdx = [];
+var string1 = [];
+var string2 = [];
 
 function initMapBlank() {
   var map11 = new google.maps.Map(document.getElementById("map"), {
@@ -118,18 +120,37 @@ function addMarker(location, map, adj, markers, id) {
           stopover: true
         });
         routeMarkers1.length = 0;
-        calculateAndDisplayRoute(waypoints, 1);
+        string1.push(markers[UCSPath[i]].title);
       } 
-    } else if (routeMarkers2.length == 2) {
-        console.log(array);
-        let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
-        for (var i = 0; i < AstarPath.length; i++) {
-          waypoints2.push({
-            location: markers[AstarPath[i]].position,
-            stopover: true
-          });
+      var content1 = ""
+      for (let i = 0; i < string1.length; i++) {
+        content1 += string1[i]
+        if (i != string1.length - 1) {
+          content1 += " - "
         }
-        console.log("Astar")
+      }
+      console.log(content1);
+      document.getElementById("string1").textContent = content1
+      calculateAndDisplayRoute(waypoints, 1);
+    } else if (routeMarkers2.length == 2) {
+      console.log(array);
+      let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
+      for (var i = 0; i < AstarPath.length; i++) {
+        waypoints2.push({
+          location: markers[AstarPath[i]].position,
+          stopover: true
+        });
+        string2.push(markers[AstarPath[i]].title);
+      }
+      var content2 = ""
+      for (let i = 0; i < string2.length; i++) {
+        content2 += string2[i]
+        if (i != string2.length - 1) {
+          content2 += " - "
+        }
+      }
+      console.log(content2);
+      document.getElementById("string2").textContent = content2
         routeMarkers2.length = 0;
         calculateAndDisplayRoute(waypoints2, 2);
 
