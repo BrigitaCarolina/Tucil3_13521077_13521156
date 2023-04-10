@@ -56,11 +56,28 @@ function read() {
     }
     console.log(adjmatrix.length)
      if (!validateJumlah(marker, adjmatrix)) {
-        alert("Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!")
-        return
+        // alert("Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!")
+        Swal.fire({
+            title: 'Oops!',
+            text: 'Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            customClass: {
+              confirmButton: 'custombutton',
+            }
+          })
+          return
     }
     else if (!validateMarker(marker) || !validateMatrix(adjmatrix)) {
-        alert("Masukan koordinat berupa angka!")
+        Swal.fire({
+            title: 'Oops!',
+            text: 'Masukan korrdinat hanya berupa angka!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            customClass: {
+              confirmButton: 'custombutton',
+            }
+          })
         return
     }
     // console.log(center)
