@@ -3,27 +3,57 @@
 
 <head>
   <title>UCS AStar</title>
+  <style>
+    .custom-file-input:hover{
+      background-color: #4F6846;
+      color: #98B594;
+    }
+    .custom-file-input {
+      width: 127px; 
+      height: 29px; 
+      font-family: 'Inria Serif'; 
+      font-style: normal; 
+      font-weight: 700; 
+      font-size: 24px; 
+      line-height: 29px;
+      text-align: center; 
+      color: #4F6846; 
+      background: #B2C5AB; 
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+      border-radius: 50px; 
+      padding: 12px 21px;
+    }
+  </style>
 </head>
 
-<body>
-  <h1> Shortest Path :D </h1>
-  <input type="file" id="file-input">
-  <pre id="file-contents"></pre>
+<body style="background-color:#98B594;">
+  <h1 style="position: relative; width: 1142px; height: 115px; top: 0px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700;
+  font-size: 96px; line-height: 115px; left: 400px;  color: #4F6846;"> Finding the Shortest Path </h1>
+  <div style="position: absolute; left: 25px; top: 190px">
+    <label class="custom-file-input" for="file-input">Choose File</label>
+    <div id="wrong input" style="color: #4F6846; display: inline-block;"></div>
+    <input type="file" id="file-input" style="display: none;" accept=".txt">
+    <pre id="file-contents"></pre>
+  </div>
   <script type="application/javascript" src="input.js"></script>
   <script type="application/javascript" src="PriorityQueue.js"></script>
   <script type="application/javascript" src="UCS.js"></script>
   <script type="application/javascript" src="Astar.js"></script>
-  <div class="map container" style="display: flex; justify-content: space-between;">
-    <div id="map" style="height: 500px; width: 48%; display: inline-block; margin: 0 1%;"></div>
-    <div id="map2" style="height: 500px; width: 48%; display: inline-block; margin: 0 1%;"></div>
+  <div class="map container" style="display: flex; justify-content: space-between; ">
+    <div id="map" style=" height: 600px; width: 48%; display: inline-block; margin: 0 1%;"></div>
+    <div id="map2" style=" height: 600px; width: 48%; display: inline-block; margin: 0 1%;"></div>
   </div>
   <script type="application/javascript" src="map.js"></script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVOw7APS8qmo0d7eAT3ju9kuhzN_r4Wjg&callback=read"></script>
-    <div class="string" style="display: flex; justify-content: space-between;">
-      <p id="string1" style="display: inline-block;"></p>
-      <p id="string2" style="display: inline-block;"></p>
-    </div>
+  <div class="string" style="display: flex; justify-content: space-between;">
+    <p style="white-space:nowrap;  position: absolute; display: iniline-block;  width: 161px; height: 43px; left: 40px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">UCS Path</p>
+    <p style="white-space:nowrap; position: absolute; display: inline-block; width: 161px; height: 43px; left: 1050px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">Astar Path</p>
+  </div>
+  <div  style="display: flex; justify-content: space-between;">
+    <p id="string1" style="position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 40px; top: 885px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+    <p id="string2" style="position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 1050px; top: 885px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+  </div>
 </body>
 
 </html>

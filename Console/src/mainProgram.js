@@ -148,5 +148,5 @@ else {
 
 console.log("\n=================== A STAR ===================== ");
 const AsDistance = distance(pathAstar, mapAdjMatrix);
-console.log("Path found with total distance " + AsDistance);
+console.log("Path found with total distance " + AsDistance);  
 console.log("Shortest path : " + path);
