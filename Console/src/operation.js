@@ -9,22 +9,10 @@ export function getEuclidianDistance (coordinate1, coordinate2) {
     return distance;
 }
 
-export function displayMatrix (mapAdjMatrix) {
-    console.log(" ================= Matrix of Adjacency =================== ");
-    const matrix = mapAdjMatrix;
-    for (let i = 0; i < matrix[1].length; i++) {
-        for (let j = 0; j < matrix[0].length; j++) {
-            process.stdout.write(matrix[i][j].toString() + " ");
-        }
-        console.log();
+export function distance(path, mapAdjMatrix) {
+    let resDist = 0;
+    for (let i = 0; i < path.length - 1; i++) {
+        resDist += mapAdjMatrix[path[i]][path[i + 1]];
     }
-    console.log();
-}
-
-export function displayCoordinate (array) {
-    console.log(" ================= Array of Coordinates =================== ");
-    for (let i = 0; i < array.length; i++) {
-        console.log(i + ": " + array[i].x.toString() + ", " + array[i].y.toString());
-    }
-    console.log();
+    return resDist;
 }

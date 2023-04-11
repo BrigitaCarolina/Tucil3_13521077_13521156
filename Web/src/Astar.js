@@ -40,7 +40,7 @@ function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
                 path.unshift(point.cameFrom.index);
                 point = point.cameFrom;
             }
-            return path
+            return [true, path]
         }
         
         hasBeenExpand.add(current);
@@ -59,6 +59,7 @@ function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             fScore.set(neighbour, heuristic(neighbour.index, end, arrayOfCoordinates) + gScore.get(neighbour));            
         }   
     }
+    return [false, queue]
 }
 
 class Node {

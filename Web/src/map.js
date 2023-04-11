@@ -135,28 +135,42 @@ function addMarker(location, map, adj, markers, id) {
     } else if (routeMarkers2.length == 2) {
       console.log(array);
       let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
-      var distanceAstar = distance(AstarPath, adj)
-      document.getElementById("distanceAstar").textContent = "AStar Distance: " + distanceAstar + " m"
-      for (var i = 0; i < AstarPath.length; i++) {
-        waypoints2.push({
-          location: markers[AstarPath[i]].position,
-          stopover: true
-        });
-        string2.push(markers[AstarPath[i]].title);
-      }
-      var content2 = ""
-      for (let i = 0; i < string2.length; i++) {
-        content2 += string2[i]
-        if (i != string2.length - 1) {
-          content2 += " - "
+      if (!AstarPath[0]) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'No path found!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          customClass: {
+            confirmButton: 'custombutton',
+          }
+        })
+      } else {
+        var distanceAstar = distance(AstarPath[1], adj)
+        var path = AstarPath[1]
+        document.getElementById("distanceAstar").textContent = "AStar Distance: " + distanceAstar + " m"
+        for (var i = 0; i < path.length; i++) {
+          waypoints2.push({
+            location: markers[path[i]].position,
+            stopover: true
+          });
+          string2.push(markers[path[i]].title);
         }
+        var content2 = ""
+        for (let i = 0; i < string2.length; i++) {
+          content2 += string2[i]
+          if (i != string2.length - 1) {
+            content2 += " - "
+          }
+        }
+        console.log(content2);
+        document.getElementById("string2").textContent = content2
+          routeMarkers2.length = 0;
+          calculateAndDisplayRoute(waypoints2, 2);
+  
       }
-      console.log(content2);
-      document.getElementById("string2").textContent = content2
-        routeMarkers2.length = 0;
-        calculateAndDisplayRoute(waypoints2, 2);
 
-    }
+      }
     
 }
 

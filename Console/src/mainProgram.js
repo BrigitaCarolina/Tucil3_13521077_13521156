@@ -1,10 +1,11 @@
-import { UCS, distance } from "./UCS.js"
+import { UCS } from "./UCS.js"
+import { distance } from "./operation.js"
 import { Astar } from "./Astar.js";
 import { readFile, readFileCoordinate, validCoordinate, validMap, validNode } from "./input.js";
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
-import { displayMatrix } from "./operation.js";
-import { displayCoordinate } from "./operation.js";
+import { displayMatrix } from "./output.js";
+import { displayCoordinate } from "./output.js";
 import path from 'path';
 import { fileURLToPath } from "url";
 
@@ -79,7 +80,7 @@ while (!validNode(goalNode, mapAdjMatrix)) {
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
 const pathAstar = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
 
-if (resultPath == "") console.log("No path found\n");
+if (resultPath == "") console.log("No path found!\n");
 else {
     console.log(" =================== UCS ===================== ");
     const resultDistance = distance(resultPath, mapAdjMatrix);
@@ -87,7 +88,12 @@ else {
     console.log("Shortest path : " + Array.from(resultPath.values()));
 }
 
-console.log("\n=================== A STAR ===================== ");
-const AsDistance = distance(pathAstar, mapAdjMatrix);
-console.log("Path found with total distance " + AsDistance);  
-console.log("Shortest path : " + path);
+if (!pathAstar[0]) {
+    console.log("No path found!\n")
+} else {
+    console.log("\n=================== A STAR ===================== ");
+    const AsDistance = distance(pathAstar[1], mapAdjMatrix);
+        console.log("Path found with total distance " + AsDistance);  
+        console.log("Shortest path : " + pathAstar[1]);
+}
+    
