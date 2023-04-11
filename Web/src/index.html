@@ -28,7 +28,7 @@
     }
     .custom-graph-button {
       position: absolute;
-      left: 1835px;
+      left: 2100px;
       font-family: 'Inria Serif'; 
       font-style: normal; 
       font-weight: 700; 
@@ -71,7 +71,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
   <h1 style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); display: flex; position: relative; width: 1142px; height: 115px; top: 0px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700;
-  font-size: 96px; line-height: 115px; left: 400px;  color: #4F6846;"> Finding the Shortest Path </h1>
+  font-size: 96px; line-height: 115px; left: 600px;  color: #4F6846;"> Finding the Shortest Path </h1>
   <div style="position:absolute; display: flex; top: 180px;">
     <label class="custom-file-input" for="file-input">Choose File</label>
     <div id="wrong input" style="color: #4F6846; display: inline-block;"></div>
@@ -94,16 +94,16 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVOw7APS8qmo0d7eAT3ju9kuhzN_r4Wjg&callback=read"></script>
   <div class="string" style="display: flex; justify-content: space-between;">
-    <p style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap;  position: absolute; display: iniline-block;  width: 161px; height: 43px; left: 40px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">UCS Path</p>
-    <p style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap; position: absolute; display: inline-block; width: 161px; height: 43px; left: 1050px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">Astar Path</p>
+    <p style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap;  position: absolute; display: iniline-block;  width: 161px; height: 43px; left: 40px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">UCS Path</p>
+    <p style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap; position: absolute; display: inline-block; width: 161px; height: 43px; left: 1180px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">Astar Path</p>
   </div>
-  <div  style="display: flex; justify-content: space-between;">
-    <p id="string1" style=" position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 40px; top: 885px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
-    <p id="string2" style=" position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 1050px; top: 885px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+  <div style="position: absolute; top: 890px; display: flex;">
+    <p id="distanceUCS" style="   display:inline-block; position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 40px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+    <p id="distanceAstar" style="   position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 1180px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
   </div>
-  <div  style="display: flex; justify-content: space-between;">
-    <p id="distanceUCS" style=" position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 40px; top: 910px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
-    <p id="distanceAstar" style=" position:absolute; white-space:nowrap;   width: 161px; height: 43px; left: 1050px; top: 910px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+  <div style="position: relative; top:80px; display: flex; white-space: pre-line">
+    <p id="string1" style=" display: inline-block; position: absolute;  word-wrap: break-word;   width: 900px; height: 35px; left: 20px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+    <p id="string2" style="  position: absolute; word-wrap: break-word;  width: 900px; height: 35px; left: 1170px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
   </div>
 </body>
 
