@@ -1,5 +1,3 @@
-import { distance } from "../../Console/src/UCS";
-
 var routeMarkers1 = [];
 var routeMarkers2 = [];
 var directionsService;
@@ -117,8 +115,8 @@ function addMarker(location, map, adj, markers, id) {
     var distanceUCS = distance(UCSPath, adj)
     document.getElementById("distanceUCS").textContent = "UCS Distance: " + distanceUCS + " m"
     for (var i = 0; i < UCSPath.length; i++) {
-        waypoints.push({
-          location: markers[UCSPath[i]].position,
+      waypoints.push({
+        location: markers[UCSPath[i]].position,
           stopover: true
         });
         routeMarkers1.length = 0;
@@ -138,7 +136,7 @@ function addMarker(location, map, adj, markers, id) {
       console.log(array);
       let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
       var distanceAstar = distance(AstarPath, adj)
-      document.getElementById("distanceUCS").textContent = "Astar Distance: " + distanceAstar + " m"
+      document.getElementById("distanceAstar").textContent = "AStar Distance: " + distanceAstar + " m"
       for (var i = 0; i < AstarPath.length; i++) {
         waypoints2.push({
           location: markers[AstarPath[i]].position,
