@@ -130,7 +130,7 @@ function addMarker(location, map, adj, markers, id) {
       for (let i = 0; i < string1.length; i++) {
         content1 += string1[i]
         if (i != string1.length - 1) {
-          content1 += " → "
+          content1 += " ➔ "
         }
       }
       document.getElementById("string1").textContent = content1
@@ -165,7 +165,7 @@ function addMarker(location, map, adj, markers, id) {
       for (let i = 0; i < string2.length; i++) {
         content2 += string2[i]
         if (i != string2.length - 1) {
-          content2 += " → "
+          content2 += " ➔ "
         }
       }
       document.getElementById("string2").textContent = content2
