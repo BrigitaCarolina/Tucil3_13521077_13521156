@@ -1,8 +1,5 @@
 import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from "url";
 
-// const fs = require('fs');
 export function readFile(filePath) {
     const result = [];
     const contents = fs.readFileSync(filePath, 'utf-8');
@@ -71,9 +68,3 @@ export function validNode(inputNode, adjMatrix) {
         return false;
     } else return true;
 }
-
-// const markers = [
-//     {
-//       position: { lat: -6.885196682648061, lng: 107.61370535846539 },
-//       title: "Simpang Dago",
-//     },

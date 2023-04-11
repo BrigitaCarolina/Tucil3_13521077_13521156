@@ -10,7 +10,6 @@ export class PriorityQueue {
 
     // Insert new element
     enqueue(newElement) {
-        // console.log("newElement = (" + newElement[0] + ", " + newElement[1] + ", " + newElement[2] + ")");
         let done = false;
         for (let i = 0; !done && i < this.queue.length; i++) {
             if (newElement[0] <= this.queue[i][0]) {

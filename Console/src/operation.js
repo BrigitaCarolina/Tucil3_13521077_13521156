@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 export function getEuclidianDistance (coordinate1, coordinate2) {
     const x1 = coordinate1.x;
     const y1 = coordinate1.y;

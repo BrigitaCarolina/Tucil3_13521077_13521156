@@ -1,15 +1,16 @@
 import {getEuclidianDistance} from './operation.js';
 export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
+    // calculating heuristic score by euclidian distance 
     function heuristic(start, end) {
         return getEuclidianDistance(arrayOfCoordinates[start], arrayOfCoordinates[end]);
     }
 
-    const hasBeenExpand = new Set();
-    
+    // initialize the has been expand node set 
+    const hasBeenExpand = new Set(); // close-set
     
     // Initialize the queue to expand the path
     const nodeStart = new Node(start, null);
-    const queue = [nodeStart] // openSet
+    const queue = [nodeStart] // openset
 
     // Initialize the f(n) and g(n)
     const gScore = new Map();
@@ -23,6 +24,7 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
         // dequeue the queue, get vertex to expand
         const current = queue.shift();
         
+        // checking if current node is the goal
         if (current.index == end) {
             const path = [current.index]
             let point = new Node(current.index, current.cameFrom);
@@ -33,6 +35,7 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             return path
         }
 
+        // adding the current node to sign it has been expand
         hasBeenExpand.add(current);
 
         // get the current neighbor 
@@ -50,6 +53,7 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
     }
 }
 
+// custom node class 
 class Node {
     constructor(index, cameFrom = null) {
         this.index = index;
@@ -57,6 +61,7 @@ class Node {
     }
 }
 
+// getting the neighbour of current expanded node 
 function getNeighbour(mapAdjMatrix, point) {
     const neighbors = [];
     for (let i = 0; i < mapAdjMatrix[0].length; i++) {

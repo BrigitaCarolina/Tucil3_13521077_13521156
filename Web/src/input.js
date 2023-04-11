@@ -10,20 +10,15 @@ function read() {
     const adjmatrix = [];
     center.length = 0;
     marker.length = 0;
-    let isvalid = false;
-    // while (!isvalid) {
     fileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-  const reader = new FileReader();
-  reader.addEventListener('load', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event) => {
     const contents = event.target.result;
-    // fileContents.textContent = contents;
     let splitted;
-    // Read per line
     const lines = contents.trim().split('\n');
     let simpul; 
     let positions;
-    // Split lines
     for (let i = 0; i < lines.length; i++) {
         if (i == 0) {
             splitted = lines[i].trim().split(/\s+/).map(Number);
@@ -54,9 +49,7 @@ function read() {
             adjmatrix.push(splitted);
         }
     }
-    console.log(adjmatrix.length)
-     if (!validateJumlah(marker, adjmatrix)) {
-        // alert("Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!")
+    if (!validateJumlah(marker, adjmatrix)) {
         Swal.fire({
             title: 'Oops!',
             text: 'Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!',
@@ -67,8 +60,7 @@ function read() {
             }
           })
           return
-    }
-    else if (!validateMarker(marker) || !validateMatrix(adjmatrix)) {
+    } else if (!validateMarker(marker) || !validateMatrix(adjmatrix)) {
         Swal.fire({
             title: 'Oops!',
             text: 'Masukan korrdinat hanya berupa angka!',
@@ -80,17 +72,10 @@ function read() {
           })
         return
     }
-    // console.log(center)
-    // console.log(marker)
     initMap(center, marker, adjmatrix);
-    // isvalid = true;
   });
-
   reader.readAsText(file);
 });
-    // }
-
-// }
 }
 
 function validateJumlah(marker, adjmatrix) {
