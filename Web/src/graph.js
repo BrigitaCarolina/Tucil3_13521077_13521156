@@ -22,7 +22,7 @@ function graphVisual(marker, adjmatrix, path, id) {
     for (let i = 0; i < marker.length; i++) {
         for (let j = i; j < marker.length; j++) {
             if (adjmatrix[i][j] > 0) {
-                if (path.indexOf(j) == (path.indexOf(i) + 1) && path.indexOf(j) >= 0 && path.indexOf(i) >= 0) {
+                if ((Math.abs(path.indexOf(j) - path.indexOf(i)) == 1) && path.indexOf(j) >= 0 && path.indexOf(i) >= 0) {
                     tint = 'lightsalmon';
                 } else {
                     tint = 'lightblue';
