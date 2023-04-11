@@ -32,7 +32,7 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
                 path.unshift(point.cameFrom.index);
                 point = point.cameFrom;
             }
-            return path
+            return [true, path]
         }
 
         // adding the current node to sign it has been expand
@@ -51,6 +51,7 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
             fScore.set(neighbour, heuristic(neighbour.index, end) + gScore.get(neighbour));            
         }   
     }
+    return [false, queue]
 }
 
 // custom node class 

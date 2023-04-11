@@ -79,7 +79,7 @@ while (!validNode(goalNode, mapAdjMatrix)) {
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
 const pathAstar = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
 
-if (resultPath == "") console.log("No path found\n");
+if (resultPath == "") console.log("No path found!\n");
 else {
     console.log(" =================== UCS ===================== ");
     const resultDistance = distance(resultPath, mapAdjMatrix);
@@ -87,7 +87,12 @@ else {
     console.log("Shortest path : " + Array.from(resultPath.values()));
 }
 
-console.log("\n=================== A STAR ===================== ");
-const AsDistance = distance(pathAstar, mapAdjMatrix);
-console.log("Path found with total distance " + AsDistance);  
-console.log("Shortest path : " + path);
+if (!pathAstar[0]) {
+    console.log("No path found!\n")
+} else {
+    console.log("\n=================== A STAR ===================== ");
+    const AsDistance = distance(pathAstar, mapAdjMatrix);
+        console.log("Path found with total distance " + AsDistance);  
+        console.log("Shortest path : " + pathAstar[1]);
+}
+    
