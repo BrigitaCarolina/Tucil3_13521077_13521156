@@ -1,13 +1,11 @@
 const fileInput = document.getElementById('file-input');
 const fileContents = document.getElementById('file-contents');
+const center = [];
+const marker = [];
+const adjmatrix = [];
 
 function read() {
-    console.log("here")
     initMapBlank();
-    console.log("disini")
-    const center = [];
-    const marker = [];
-    const adjmatrix = [];
     center.length = 0;
     marker.length = 0;
     fileInput.addEventListener('change', (event) => {

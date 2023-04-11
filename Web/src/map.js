@@ -1,3 +1,4 @@
+
 var routeMarkers1 = [];
 var routeMarkers2 = [];
 var directionsService;
@@ -7,6 +8,8 @@ var waypoints2 = [];
 var routeIdx = [];
 var string1 = [];
 var string2 = [];
+let path;
+let UCSPath;
 
 function initMapBlank() {
   var map11 = new google.maps.Map(document.getElementById("map"), {
@@ -23,7 +26,6 @@ function initMapBlank() {
 }
 
 function initMap(center, markers, adjmatrix) {
-  console.log(adjmatrix);
   var map1 = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: new google.maps.LatLng(center[0].lat, center[0].lng),
@@ -94,44 +96,45 @@ function addMarker(location, map, adj, markers, id) {
   } else {
     routeMarkers2.push(marker);
   }
-  console.log(id);
-  console.log("routemarker1" + routeMarkers1.length);
-  
-  // if (routeMarkers.length == 4) {
-    //   for (var i = 0; i < routeMarkers.length; i++) {
-      //     waypoints.push({
-        //       location: routeMarkers[i].getPosition(),
-        //       stopover: true
-        //     });
-        //   }
-  //   calculateAndDisplayRoute(waypoints);
-  // }
+  const button = document.getElementById("visualizegraph")
+  button.disabled = true;
   const array = []
   for (let i = 0; i < markers.length; i++) {
     array.push({x: markers[i].position.lat, y: markers[i].position.lng})
   }
   if (routeMarkers1.length == 2) {
-    let UCSPath = UCS(adj, routeIdx[0], routeIdx[1]);
-    var distanceUCS = distance(UCSPath, adj)
-    document.getElementById("distanceUCS").textContent = "UCS Distance: " + distanceUCS + " m"
-    for (var i = 0; i < UCSPath.length; i++) {
-      waypoints.push({
-        location: markers[UCSPath[i]].position,
-          stopover: true
-        });
-        routeMarkers1.length = 0;
-        string1.push(markers[UCSPath[i]].title);
-      } 
-      var content1 = ""
-      for (let i = 0; i < string1.length; i++) {
-        content1 += string1[i]
-        if (i != string1.length - 1) {
-          content1 += " - "
+    UCSPath = UCS(adj, routeIdx[0], routeIdx[1]);
+    if (UCSPath == "") {
+      Swal.fire({
+        title: 'Error!',
+        text: 'No path found!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        customClass: {
+          confirmButton: 'custombutton',
         }
+      })
+    } else {
+      var distanceUCS = distance(UCSPath, adj)
+      document.getElementById("distanceUCS").textContent = "UCS Distance: " + distanceUCS + " m"
+      for (var i = 0; i < UCSPath.length; i++) {
+        waypoints.push({
+          location: markers[UCSPath[i]].position,
+            stopover: true
+          });
+          routeMarkers1.length = 0;
+          string1.push(markers[UCSPath[i]].title);
+        } 
+        var content1 = ""
+        for (let i = 0; i < string1.length; i++) {
+          content1 += string1[i]
+          if (i != string1.length - 1) {
+            content1 += " - "
+          }
+        }
+        document.getElementById("string1").textContent = content1
+        calculateAndDisplayRoute(waypoints, 1);
       }
-      console.log(content1);
-      document.getElementById("string1").textContent = content1
-      calculateAndDisplayRoute(waypoints, 1);
     } else if (routeMarkers2.length == 2) {
       console.log(array);
       let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
@@ -147,7 +150,7 @@ function addMarker(location, map, adj, markers, id) {
         })
       } else {
         var distanceAstar = distance(AstarPath[1], adj)
-        var path = AstarPath[1]
+        path = AstarPath[1]
         document.getElementById("distanceAstar").textContent = "AStar Distance: " + distanceAstar + " m"
         for (var i = 0; i < path.length; i++) {
           waypoints2.push({
@@ -163,13 +166,18 @@ function addMarker(location, map, adj, markers, id) {
             content2 += " - "
           }
         }
-        console.log(content2);
         document.getElementById("string2").textContent = content2
           routeMarkers2.length = 0;
           calculateAndDisplayRoute(waypoints2, 2);
   
       }
 
+      }
+      button.disabled = false;
+      button.addEventListener('click', function() {displayGraph(markers, adj, UCSPath, path)})
+      function displayGraph(markers, adj, UCSPath, path) {
+          graphVisual(markers, adj, UCSPath, 1)
+          graphVisual(markers, adj, path, 2)
       }
     
 }

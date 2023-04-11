@@ -9,6 +9,8 @@
       color: #98B594;
     }
     .custom-file-input {
+      position: absolute;
+      left: 20px;
       width: 127px; 
       height: 29px; 
       font-family: 'Inria Serif'; 
@@ -22,6 +24,33 @@
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
       border-radius: 50px; 
       padding: 12px 21px;
+      white-space: nowrap;
+    }
+    .custom-graph-button {
+      position: absolute;
+      left: 1835px;
+      font-family: 'Inria Serif'; 
+      font-style: normal; 
+      font-weight: 700; 
+      font-size: 24px; 
+      line-height: 29px;
+      text-align: center; 
+      color: #4F6846; 
+      background: #B2C5AB; 
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+      border-radius: 50px; 
+      padding: 12px 21px;
+      white-space: nowrap;
+    }
+    .custom-graph-button:hover {
+      background-color: #4F6846;
+      color: #98B594;
+    }
+    .custom-graph-button:disabled {
+      color: #999 !important;
+      background-color: #ccc !important;
+      cursor: not-allowed !important;
+
     }
     .custombutton {
       padding: 12px 21px;
@@ -30,7 +59,12 @@
       background-color:#B2C5AB;
       color: #4F6846;
     }
-  </style>
+    #visualizegraph:disabled{
+      color: #999;
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    </style>
 </head>
 
 <body style="background-color:#98B594;">
@@ -38,16 +72,20 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
   <h1 style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); display: flex; position: relative; width: 1142px; height: 115px; top: 0px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700;
   font-size: 96px; line-height: 115px; left: 400px;  color: #4F6846;"> Finding the Shortest Path </h1>
-  <div style="position: absolute; left: 25px; top: 190px">
+  <div style="position:absolute; display: flex; top: 180px;">
     <label class="custom-file-input" for="file-input">Choose File</label>
     <div id="wrong input" style="color: #4F6846; display: inline-block;"></div>
     <input type="file" id="file-input" style="display: none;" accept=".txt">
     <pre id="file-contents"></pre>
+    <label for="visualizegraph" class="custom-graph-button" >Show Graph</label>
   </div>
+  <button id="visualizegraph" style="display: none;"></button>
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script type="application/javascript" src="input.js"></script>
   <script type="application/javascript" src="PriorityQueue.js"></script>
   <script type="application/javascript" src="UCS.js"></script>
   <script type="application/javascript" src="Astar.js"></script>
+  <script type="application/javascript" src="graph.js"></script>
   <div class="map container" style="display: flex; justify-content: space-between; ">
     <div id="map" style="display: flex; height: 600px; width: 48%; display: inline-block; margin: 0 1%;"></div>
     <div id="map2" style="display: flex; height: 600px; width: 48%; display: inline-block; margin: 0 1%;"></div>

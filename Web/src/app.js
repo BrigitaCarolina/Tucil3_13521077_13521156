@@ -16,6 +16,10 @@ app.get('/Astar.js', (req, res) => {
   res.set('Content-Type', 'application/javascript');
   res.sendFile(__dirname + '/Astar.js');
 });
+app.get('/graph.js', (req, res) => {
+  res.set('Content-Type', 'application/javascript');
+  res.sendFile(__dirname + '/graph.js');
+});
 app.get('/input.js', (req, res) => {
   res.set('Content-Type', 'application/javascript');
   res.sendFile(__dirname + '/input.js');
