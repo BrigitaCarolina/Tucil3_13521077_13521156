@@ -1,3 +1,4 @@
+import { distance } from "../../Console/src/UCS";
 
 var routeMarkers1 = [];
 var routeMarkers2 = [];
@@ -112,9 +113,10 @@ function addMarker(location, map, adj, markers, id) {
     array.push({x: markers[i].position.lat, y: markers[i].position.lng})
   }
   if (routeMarkers1.length == 2) {
-      let UCSPath = UCS(adj, routeIdx[0], routeIdx[1]);
-  
-      for (var i = 0; i < UCSPath.length; i++) {
+    let UCSPath = UCS(adj, routeIdx[0], routeIdx[1]);
+    var distanceUCS = distance(UCSPath, adj)
+    document.getElementById("distanceUCS").textContent = "UCS Distance: " + distanceUCS + " m"
+    for (var i = 0; i < UCSPath.length; i++) {
         waypoints.push({
           location: markers[UCSPath[i]].position,
           stopover: true
@@ -135,6 +137,8 @@ function addMarker(location, map, adj, markers, id) {
     } else if (routeMarkers2.length == 2) {
       console.log(array);
       let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
+      var distanceAstar = distance(AstarPath, adj)
+      document.getElementById("distanceUCS").textContent = "Astar Distance: " + distanceAstar + " m"
       for (var i = 0; i < AstarPath.length; i++) {
         waypoints2.push({
           location: markers[AstarPath[i]].position,
@@ -191,4 +195,12 @@ function calculateAndDisplayRoute(waypoints, id) {
     });
 
   }
+}
+
+function distance(path, mapAdjMatrix) {
+  let resDist = 0;
+  for (let i = 0; i < path.length - 1; i++) {
+      resDist += mapAdjMatrix[path[i]][path[i + 1]];
+  }
+  return resDist;
 }

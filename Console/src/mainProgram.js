@@ -12,13 +12,13 @@ import { fileURLToPath } from "url";
 // Main Program
 console.log("Entering program...\n");
 
-var arrayOfCoordinates;
-
+// Arranging file path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const parentDir = path.resolve(__dirname, '..');
 
-// // Input file        
+// Input file        
+var arrayOfCoordinates;
 var fileName = prompt('Input coordinate file name (without the .txt extension): ');
 var valid;
 do {
@@ -40,7 +40,8 @@ while (!validCoordinate(arrayOfCoordinates)) {
 }
             
 displayCoordinate(arrayOfCoordinates);
-// Input file
+
+// Input file and input file validation 
 var fileName = prompt('Input adjacency map file name (without the .txt extension): ');
 var mapAdjMatrix;
 var valid;
