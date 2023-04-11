@@ -1,23 +1,69 @@
-# Tucil3_13521077_13521156
+# IF2211_Strategi Algoritma
 
-Tugas Kecil 3:
-1. Deadline pengumpulan adalah hari Rabu, 12 April 2023 pukul 23.59. Bagi yang mengumpulkan melewati deadline akan dikenakan penalti. 
-2. Repository wajib di-public setelah deadline pengumpulan. (Apabila khawatir lupa mem-public, boleh melakukannya sebelum deadline).
-3. Untuk mempermudah pendataan kelompok, silahkan mengisi kelompok anda melalui sheet berikut. Yang mengerjakan secara individu juga tetap mengisi sheet. Restriksi pemilihan anggota kelompok sama seperti Tugas Besar, boleh lintas kelas namun tidak boleh sama dengan anggota kelompok tugas besar sebelumnya ataupun tugas berkelompok selanjutnya.
-4. Program disimpan dalam repository dengan nama Tucil3_NIM apabila sendiri dan Tucil3_NIM1_NIM2 apabila berkelompok. Struktur repository adalah sebagai berikut:<br>
-   Folder src berisi source code<br>
-   Folder bin berisi executable (apabila ada pada bahasa pemrograman yang dipilih)<br>
-   Folder doc berisi laporan tugas kecil<br>
-   README
+## *Tucil3_13521077_13521156*
 
-5. README wajib mengandung minimal beberapa poin sebagai berikut:<br>
-   a. Deskripsi singkat program yang dibuat<br>
-   b. Requirement program dan instalasi tertentu bila ada<br>
-   c. Cara menggunakan program<br>
-   d. Author / identitas pembuat<br>
+## **Table of Contents**
+* [Program Description](#program-description)
+* [Required Program](#required-program)
+* [How to Run The Program](#how-to-run-the-program)
+* [Implementation Screenshots](#implementation-screenshots)
+* [Progress Report](#progress-report)
+* [Folders and Files Description](#folders-and-files-description)
+* [Author](#author)
 
-6. Submisi bisa dilakukan pada tautan drive yang tersedia pada spesifikasi. Yang perlu dikumpulkan adalah laporan dengan format Tucil3_NIM.pdf apabila sendiri atau Tucil3_NIM1_NIM2.pdf apabila berkelompok dan berisi tautan github ataupun drive program kalian. Apabila lintas kelas, submisi boleh di lakukan di salah satu drive kelas.
-7. Adapun pertanyaan lain terkait Tugas Kecil 3, bisa ditanyakan melalui sheet https://bit.ly/TugasStimaQnA 
+## **Program Description**
 
-<br><br>
-Kalau "Can not use import statement outside a module" tambahin "type": "module" di package.json
+
+## **Required Program**
+
+## **Implementation Screenshots**
+
+## **Progress Report**
+
+| Point | Yes | No |
+|-----|-----|------|
+|The program is able read graph input | &check; |    |
+|The program can estimate the shortest path using UCS algorithm | &check; |  |
+|The program can estimate the shortest path using A* algorithm | &check; |  |
+|The program can display the shortest path and its distance | &check; |  |
+|The program can read map input and use google maps API to display the map and the shortest path on map | &check; |  |
+
+
+## **Folders and Files Description**
+```bash                             
+├── doc
+    └── Tucil3_13521077_13521156.pdf
+├── Console
+    ├── node-modules
+    ├── src  
+         ├── Astar.js
+         ├── UCS.js
+         ├── input.js
+         ├── output.js
+         ├── mainProgram.js
+         ├── operation.js
+         ├── PriorityQueue.js
+         └── package.json
+    └── test
+├── Web
+    ├── node-modules
+    ├── src 
+         ├── app.js
+         ├── Astar.js
+         ├── UCS.js
+         ├── graph.js
+         ├── index.html
+         ├── input.js
+         ├── map.js
+         ├── PriorityQueue.js
+         ├── package-lock.json
+         └── package.json     
+    └── test
+└── README.md
+```
+
+## **Author**
+| Nama | NIM |
+|-------|------------|
+| Husnia Munzayana | 13521077 |
+| Brigita Tri Carolina | 13521156 |
