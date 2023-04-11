@@ -12,9 +12,19 @@
 * [Author](#author)
 
 ## **Program Description**
-
+This program is a web based program that uses JavaScript language along with html and CSS. The main of this program is to find the shortest path given the start and goal node using the UCS and A* algorithm. This program accept the map file input in txt, reading it, and displaying the map using the Google Maps API. This program is the node.js program with the app.js framework. This program uses express library that can be downloaded using this command:
+```
+npm install express googlemaps --save
+```
 
 ## **Required Program**
+To run this program you need to install Node.js
+kajsdhfkajshdfkajshdf
+
+## **How to Run The Program **
+# How to Run The Console Program
+# How to Run The Web Program
+
 
 ## **Implementation Screenshots**
 
