@@ -9,71 +9,71 @@ function read() {
     center.length = 0;
     marker.length = 0;
     fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event) => {
-    const contents = event.target.result;
-    let splitted;
-    const lines = contents.trim().split('\n');
-    let simpul; 
-    let positions;
-    for (let i = 0; i < lines.length; i++) {
-        if (i == 0) {
-            splitted = lines[i].trim().split(/\s+/).map(Number);
-            simpul = splitted[0];
-        } else if (i == 1) {
-            splitted = lines[i].trim().split(/\s+/).map(Number);
-            centers = {
-                lat: splitted[0],
-                lng: splitted[1] 
-            }
-            center.push(centers);
-        } else if (i <= simpul * 2 + 1) {
-            if (i % 2 == 0) {
-                splitted = lines[i].trim().split(/\s+/).map(Number);
-                positions = {
-                    lat: splitted[0],
-                    lng: splitted[1]
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            const contents = event.target.result;
+            let splitted;
+            const lines = contents.trim().split('\n');
+            let simpul;
+            let positions;
+            for (let i = 0; i < lines.length; i++) {
+                if (i == 0) {
+                    splitted = lines[i].trim().split(/\s+/).map(Number);
+                    simpul = splitted[0];
+                } else if (i == 1) {
+                    splitted = lines[i].trim().split(/\s+/).map(Number);
+                    centers = {
+                        lat: splitted[0],
+                        lng: splitted[1]
+                    }
+                    center.push(centers);
+                } else if (i <= simpul * 2 + 1) {
+                    if (i % 2 == 0) {
+                        splitted = lines[i].trim().split(/\s+/).map(Number);
+                        positions = {
+                            lat: splitted[0],
+                            lng: splitted[1]
+                        }
+                    } else {
+                        splitted = lines[i].trim().split().map(String);
+                        marker.push({
+                            position: positions,
+                            title: splitted[0]
+                        });
+                    }
+                } else {
+                    splitted = lines[i].trim().split(/\s+/).map(Number);
+                    adjmatrix.push(splitted);
                 }
-            } else {
-                splitted = lines[i].trim().split().map(String);
-                marker.push({
-                    position: positions,
-                    title: splitted[0]
-                });
             }
-        } else {
-            splitted = lines[i].trim().split(/\s+/).map(Number);
-            adjmatrix.push(splitted);
-        }
-    }
-    if (!validateJumlah(marker, adjmatrix)) {
-        Swal.fire({
-            title: 'Oops!',
-            text: 'Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!',
-            icon: 'error',
-            confirmButtonText: 'OK',
-            customClass: {
-              confirmButton: 'custombutton',
+            if (!validateJumlah(marker, adjmatrix)) {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Jumlah koordinat simpul yang dimasukkan tidak sesuai dengan jumlah simpul pada matriks ketetanggaan!',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'custombutton',
+                    }
+                })
+                return
+            } else if (!validateMarker(marker) || !validateMatrix(adjmatrix)) {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Masukan koordinat hanya berupa angka!',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'custombutton',
+                    }
+                })
+                return
             }
-          })
-          return
-    } else if (!validateMarker(marker) || !validateMatrix(adjmatrix)) {
-        Swal.fire({
-            title: 'Oops!',
-            text: 'Masukan korrdinat hanya berupa angka!',
-            icon: 'error',
-            confirmButtonText: 'OK',
-            customClass: {
-              confirmButton: 'custombutton',
-            }
-          })
-        return
-    }
-    initMap(center, marker, adjmatrix);
-  });
-  reader.readAsText(file);
-});
+            initMap(center, marker, adjmatrix);
+        });
+        reader.readAsText(file);
+    });
 }
 
 function validateJumlah(marker, adjmatrix) {

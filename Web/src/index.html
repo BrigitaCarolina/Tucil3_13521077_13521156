@@ -4,67 +4,73 @@
 <head>
   <title>UCS AStar</title>
   <style>
-    .custom-file-input:hover{
+    .custom-file-input:hover {
       background-color: #4F6846;
       color: #98B594;
     }
+
     .custom-file-input {
       position: absolute;
       left: 20px;
-      width: 127px; 
-      height: 29px; 
-      font-family: 'Inria Serif'; 
-      font-style: normal; 
-      font-weight: 700; 
-      font-size: 24px; 
+      width: 127px;
+      height: 29px;
+      font-family: 'Inria Serif';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
       line-height: 29px;
-      text-align: center; 
-      color: #4F6846; 
-      background: #B2C5AB; 
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
-      border-radius: 50px; 
+      text-align: center;
+      color: #4F6846;
+      background: #B2C5AB;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 50px;
       padding: 12px 21px;
       white-space: nowrap;
     }
+
     .custom-graph-button {
       position: absolute;
       left: 2100px;
-      font-family: 'Inria Serif'; 
-      font-style: normal; 
-      font-weight: 700; 
-      font-size: 24px; 
+      font-family: 'Inria Serif';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
       line-height: 29px;
-      text-align: center; 
-      color: #4F6846; 
-      background: #B2C5AB; 
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
-      border-radius: 50px; 
+      text-align: center;
+      color: #4F6846;
+      background: #B2C5AB;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 50px;
       padding: 12px 21px;
       white-space: nowrap;
     }
+
     .custom-graph-button:hover {
       background-color: #4F6846;
       color: #98B594;
     }
+
     .custom-graph-button:disabled {
       color: #999 !important;
       background-color: #ccc !important;
       cursor: not-allowed !important;
 
     }
+
     .custombutton {
       padding: 12px 21px;
-      border-radius: 50px; 
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
-      background-color:#B2C5AB;
+      border-radius: 50px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      background-color: #B2C5AB;
       color: #4F6846;
     }
-    #visualizegraph:disabled{
+
+    #visualizegraph:disabled {
       color: #999;
       background-color: #ccc;
       cursor: not-allowed;
     }
-    </style>
+  </style>
 </head>
 
 <body style="background-color:#98B594;">
@@ -77,8 +83,10 @@
     <div id="wrong input" style="color: #4F6846; display: inline-block;"></div>
     <input type="file" id="file-input" style="display: none;" accept=".txt">
     <pre id="file-contents"></pre>
-    <label for="visualizegraph" class="custom-graph-button" >Show Graph</label>
+    <label for="visualizegraph" class="custom-graph-button">Show Graph</label>
   </div>
+  <p style="position:absolute; display: flex; top: 190px; width: 10000px; height: 20px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700;
+  font-size: 20px; line-height: 10px; left: 220px;  color: #4F6846;"> Refresh the page before start a new search! </p>
   <button id="visualizegraph" style="display: none;"></button>
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script type="application/javascript" src="input.js"></script>
@@ -94,16 +102,28 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVOw7APS8qmo0d7eAT3ju9kuhzN_r4Wjg&callback=read"></script>
   <div class="string" style="display: flex; justify-content: space-between;">
-    <p style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap;  position: absolute; display: iniline-block;  width: auto; height: 43px; left: 40px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">UCS Path</p>
-    <p style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap; position: absolute; display: inline-block; width: auto; height: 43px; left: 1180px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">Astar Path</p>
+    <p
+      style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap;  position: absolute; display: iniline-block;  width: auto; height: 43px; left: 40px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">
+      UCS Path</p>
+    <p
+      style="  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); white-space:nowrap; position: absolute; display: inline-block; width: auto; height: 43px; left: 1180px; top: 830px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 36px; line-height: 43px; text-align: center; color: #4F6846;">
+      Astar Path</p>
   </div>
   <div style="position: absolute; top: 890px; display: flex;">
-    <p id="distanceUCS" style="   display:inline-block; position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 40px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
-    <p id="distanceAstar" style="   position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 1180px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+    <p id="distanceUCS"
+      style="   display:inline-block; position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 40px; font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;">
+    </p>
+    <p id="distanceAstar"
+      style="   position: absolute; white-space:nowrap;   width: 161px; height: 43px;  left: 1180px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;">
+    </p>
   </div>
   <div style="position: relative; top:80px; display: flex; white-space: pre-line">
-    <p id="string1" style=" display: inline-block; position: absolute;  word-wrap: break-word;   width: 900px; height: 35px; left: 20px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
-    <p id="string2" style="  position: absolute; word-wrap: break-word;  width: 900px; height: 35px; left: 1170px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;"></p>
+    <p id="string1"
+      style=" display: inline-block; position: absolute;  word-wrap: break-word;   width: 900px; height: 35px; left: 20px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;">
+    </p>
+    <p id="string2"
+      style="  position: absolute; word-wrap: break-word;  width: 900px; height: 35px; left: 1170px;  font-family: 'Inria Serif'; font-style: normal; font-weight: 700; font-size: 20px; line-height: 43px; text-align: center; color: #4F6846;">
+    </p>
   </div>
 </body>
 
