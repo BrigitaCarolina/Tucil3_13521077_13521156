@@ -87,7 +87,7 @@ function validateJumlah(marker, adjmatrix) {
 }
 
 function validateMarker(marker) {
-    if (marker.length == 0) {
+    if (marker.length < 2) {
         return false;
     }
     for (let i = 0; i < marker; i++) {
@@ -101,7 +101,9 @@ function validateMarker(marker) {
 function validateMatrix(Matrix) {
     if (Matrix.length == 0) {
         return false;
-    } 
+    } else if (Matrix[1].length != Matrix[0].length) {
+        return false;
+    }
     for (let i = 0; i < Matrix[1].length; i++) {
         for (let j = 0; j < Matrix[0].length; j++) {
             if (Number.isNaN(Matrix[i][j])) {
