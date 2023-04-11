@@ -23,25 +23,26 @@ export function Astar(mapAdjMatrix, arrayOfCoordinates, start, end) {
         queue.sort((node1, node2) => fScore.get(node1) - fScore.get(node2));
         // dequeue the queue, get vertex to expand
         const current = queue.shift();
-        
         // checking if current node is the goal
         if (current.index == end) {
             const path = [current.index]
             let point = new Node(current.index, current.cameFrom);
             while (point.index != start) {
-                path.unshift(point.cameFrom.index);
+                var parent = point.cameFrom
+                path.unshift(parent.index);
                 point = point.cameFrom;
             }
             return [true, path]
         }
 
         // adding the current node to sign it has been expand
-        hasBeenExpand.add(current);
+        hasBeenExpand.add(current.index);
+
 
         // get the current neighbor 
         const neighbours = getNeighbour(mapAdjMatrix, current);
         for (const neighbour of neighbours) {
-            if (hasBeenExpand.has(neighbour)) {
+            if (hasBeenExpand.has(neighbour.index)) {
                 continue;
             }
             if (!queue.includes(neighbour)) {

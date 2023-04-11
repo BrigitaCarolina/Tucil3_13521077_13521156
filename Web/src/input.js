@@ -70,7 +70,6 @@ function read() {
           })
         return
     }
-    console.log(marker)
     initMap(center, marker, adjmatrix);
   });
   reader.readAsText(file);

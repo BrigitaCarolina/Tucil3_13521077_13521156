@@ -70,28 +70,28 @@ displayMatrix(mapAdjMatrix);
 console.log("There is", mapAdjMatrix.length, "node : 0 -", mapAdjMatrix[0].length - 1);
 var startNode = prompt("Input start node : ");
 while (!validNode(startNode, mapAdjMatrix)) {
-    startNode = prompt("Input start node : ");
+    startNode = prompt("Input start node : ").map(Number);
 }
 var goalNode = prompt("Input goal node : ");
 while (!validNode(goalNode, mapAdjMatrix)) {
     goalNode = prompt("Input goal node : ");
 }
 
+console.log()
 const resultPath = UCS(mapAdjMatrix, startNode, goalNode);
 const pathAstar = Astar(mapAdjMatrix, arrayOfCoordinates, startNode, goalNode);
 
-if (resultPath == "") console.log("No path found!\n");
+console.log(" =================== UCS ===================== ");
+if (resultPath == "") console.log("No path found!");
 else {
-    console.log(" =================== UCS ===================== ");
     const resultDistance = distance(resultPath, mapAdjMatrix);
     console.log("Path found with total distance " + resultDistance);
     console.log("Shortest path : " + Array.from(resultPath.values()));
 }
-
+console.log("\n=================== A STAR ===================== ");
 if (!pathAstar[0]) {
-    console.log("No path found!\n")
+    console.log("No path found!")
 } else {
-    console.log("\n=================== A STAR ===================== ");
     const AsDistance = distance(pathAstar[1], mapAdjMatrix);
         console.log("Path found with total distance " + AsDistance);  
         console.log("Shortest path : " + pathAstar[1]);

@@ -5,7 +5,8 @@ var directionsService;
 var directionsRenderer;
 var waypoints = [];
 var waypoints2 = [];
-var routeIdx = [];
+var routeIdx1 = [];
+var routeIdx2 = [];
 var string1 = [];
 var string2 = [];
 let path;
@@ -61,13 +62,14 @@ function initMap(center, markers, adjmatrix) {
 
     // Add accessibility text to marker.
     newMarker1.addListener("click", () => {
-      routeIdx.push(markers.indexOf(marker));
+      routeIdx1.push(markers.indexOf(marker));
       addMarker(marker.position, map1, adjmatrix, markers, 1);
       new google.maps.InfoWindow({
         content: marker.title,
       }).open(map1, newMarker1);
     });
   });
+
   markers.forEach((marker) => {
     const newMarker2 = new google.maps.Marker({
       position: marker.position,
@@ -77,7 +79,7 @@ function initMap(center, markers, adjmatrix) {
 
     // Add accessibility text to marker.
     newMarker2.addListener("click", () => {
-      routeIdx.push(markers.indexOf(marker));
+      routeIdx2.push(markers.indexOf(marker));
       addMarker(marker.position, map2, adjmatrix, markers, 2);
       new google.maps.InfoWindow({
         content: marker.title,
@@ -103,7 +105,7 @@ function addMarker(location, map, adj, markers, id) {
     array.push({ x: markers[i].position.lat, y: markers[i].position.lng })
   }
   if (routeMarkers1.length == 2) {
-    UCSPath = UCS(adj, routeIdx[0], routeIdx[1]);
+    UCSPath = UCS(adj, routeIdx1[0], routeIdx1[1]);
     if (UCSPath == "") {
       Swal.fire({
         title: 'Error!',
@@ -122,7 +124,6 @@ function addMarker(location, map, adj, markers, id) {
           location: markers[UCSPath[i]].position,
           stopover: true
         });
-        routeMarkers1.length = 0;
         string1.push(markers[UCSPath[i]].title);
       }
       var content1 = ""
@@ -135,9 +136,10 @@ function addMarker(location, map, adj, markers, id) {
       document.getElementById("string1").textContent = content1
       calculateAndDisplayRoute(waypoints, 1);
     }
+    routeMarkers1.length = 0;
   } else if (routeMarkers2.length == 2) {
-    console.log(array);
-    let AstarPath = Astar(adj, array, routeIdx[0], routeIdx[1]);
+    console.log("halo");
+    let AstarPath = Astar(adj, array, routeIdx2[0], routeIdx2[1]);
     if (!AstarPath[0]) {
       Swal.fire({
         title: 'Error!',
