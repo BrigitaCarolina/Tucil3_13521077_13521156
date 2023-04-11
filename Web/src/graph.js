@@ -20,7 +20,7 @@ function graphVisual(marker, adjmatrix, path, id) {
     }
 
     for (let i = 0; i < marker.length; i++) {
-        for (let j = 0; j < marker.length; j++) {
+        for (let j = i; j < marker.length; j++) {
             if (adjmatrix[i][j] > 0) {
                 if (path.indexOf(j) == (path.indexOf(i) + 1) && path.indexOf(j) >= 0 && path.indexOf(i) >= 0) {
                     tint = 'lightsalmon';
@@ -42,15 +42,10 @@ function graphVisual(marker, adjmatrix, path, id) {
             },
         },
         edges: {
-            arrows: {
-                to: {
-                    enabled: true,
-                    scaleFactor: 0.5,
-                },
-            },
             font: {
                 size: 20,
             },
+            width: 2,
         },
     };
     console.log("ngegraph")
