@@ -38,12 +38,12 @@ function graphVisual(marker, adjmatrix, path, id) {
             shape: 'dot',
             size: 10,
             font: {
-                size: 20,
+                size: 10,
             },
         },
         edges: {
             font: {
-                size: 20,
+                size: 10,
             },
             width: 2,
         },
