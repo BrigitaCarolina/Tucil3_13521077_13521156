@@ -40,10 +40,3 @@ export function UCS(mapAdjMatrix, startNode, goalNode) {
     else return currentExpand[2];
 }
 
-export function distance(path, mapAdjMatrix) {
-    let resDist = 0;
-    for (let i = 0; i < path.length - 1; i++) {
-        resDist += mapAdjMatrix[path[i]][path[i + 1]];
-    }
-    return resDist;
-}

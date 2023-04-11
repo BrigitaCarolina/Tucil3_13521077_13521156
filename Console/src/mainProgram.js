@@ -1,10 +1,11 @@
-import { UCS, distance } from "./UCS.js"
+import { UCS } from "./UCS.js"
+import { distance } from "./operation.js"
 import { Astar } from "./Astar.js";
 import { readFile, readFileCoordinate, validCoordinate, validMap, validNode } from "./input.js";
 import promptSync from 'prompt-sync';
 const prompt = promptSync();
-import { displayMatrix } from "./operation.js";
-import { displayCoordinate } from "./operation.js";
+import { displayMatrix } from "./output.js";
+import { displayCoordinate } from "./output.js";
 import path from 'path';
 import { fileURLToPath } from "url";
 
