@@ -46,6 +46,7 @@ and right-click to select a browser to display the page in the "Open With"
 `node mainProgram.js`
 
 ## Input File Restriction
+* Input file is stored in the test folder
 * Input node coordinates and adjacency matrices are stored in a file with .txt format consist of :
   * Line 1 specifies the number of nodes on the map
   * Line 2 specifies the coordinates for the center of the map view
