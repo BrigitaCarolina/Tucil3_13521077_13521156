@@ -37,8 +37,23 @@ The installer can be downloaded from https://nodejs.org/en/download then follow 
 * Open `index.html` file by double click the file or select the `index.html` file <br>
 and right-click to select a browser to display the page in the "Open With"
 
+## Input File Restriction
+* Input node coordinates and adjacency matrices are stored in a file with .txt format consist of :
+  * Line 1 specifies the number of nodes on the map
+  * Line 2 specifies the coordinates for the center of the map view
+  * Lines 3, 5, 7, and so on state the coordinates of each node on the map
+  * Lines 4, 6, 8, and so on state the name or description of each node
+  * The last n rows represent the adjacency matrices
+<img src="./formatInput.png" width="450" align="center">
+
+* The number of node (n), coordinates, and elements of the adjacency matrix are numbers.
+* Each coordinate consists of Latitude (latitude) and Longitude (longitude) coordinates separated by a space and is assumed to be correct or on the map.
+* The adjacency matrix represents the actual distance between nodes in meters, with 0 representing that the nodes are not neighbours.
+* Each edge represents a two-way street so that the adjacency matrix represents an undirected graph with the distance A to B = B to A
+
 ## **Implementation Screenshots**
-<img src="./program.png" width="450">
+<img src="./program1.png" width="450" align="center">
+<img src="./program2.png" width="450" align="center">
 
 ## **Progress Report**
 
