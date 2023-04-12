@@ -8,6 +8,7 @@ Implementasi Algoritma UCS dan A* untuk Menentukan Lintasan Terpendek
 * [Program Description](#program-description)
 * [Required Program](#required-program)
 * [How to Run The Program](#how-to-run-the-program)
+* [Input File Restriction](#input-file-restriction)
 * [Implementation Screenshots](#implementation-screenshots)
 * [Progress Report](#progress-report)
 * [Folders and Files Description](#folders-and-files-description)
@@ -53,7 +54,7 @@ The installer can be downloaded from https://nodejs.org/en/download then follow 
 * Compile and run the mainProgram in the terminal by typing : <br>
 `node mainProgram.js`
 
-## Input File Restriction
+## **Input File Restriction**
 * Input file is stored in the test folder
 * Input node coordinates and adjacency matrices are stored in a file with .txt format consist of :
   * Line 1 specifies the number of nodes on the map
