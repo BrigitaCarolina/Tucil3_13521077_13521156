@@ -25,17 +25,25 @@ The installer can be downloaded from https://nodejs.org/en/download then follow 
 * To run the web program, you need to have Web Browser, like Google Chrome, Firefox, Edge, etc
 
 ## **How to Run The Program**
-### How to Run The Console Program
-* Open the teminal/command prompt.
-* Locate your path to /Console/Web/src
-* Compile and run the mainProgram in the terminal by typing : <br>
-`node mainProgram.js`
-
 ### How to Run The Web Program
 * Open folder where this repository is saved
 * Go to `Web/src` folder
 * Open `index.html` file by double click the file or select the `index.html` file <br>
 and right-click to select a browser to display the page in the "Open With"
+* Enter a file by choose the "Choose File" button then selec one of the files in the test folder.
+* Wait until the map is completely loaded along with the nodes or markers
+> Note that on the page there are two maps : <br>The left map for determining routes with the UCS algorithm<br> The right map for determining routes with the A* algorithm.
+* Select two different nodes as the origin and destination nodes. 
+> Note that the process will not run if the two nodes have not been selected correctly.
+* After the two nodes are selected, the path generated from the search will appear, along with the total distance and its visualization in the map.
+* If you want to see the route search representation on the graph, press the "Show Graph" button at the top right.
+* To perform the shortest path search process again, you need to refresh the page again and repeat the same steps
+
+### How to Run The Console Program
+* Open the teminal/command prompt.
+* Locate your path to /Console/Web/src
+* Compile and run the mainProgram in the terminal by typing : <br>
+`node mainProgram.js`
 
 ## Input File Restriction
 * Input node coordinates and adjacency matrices are stored in a file with .txt format consist of :
