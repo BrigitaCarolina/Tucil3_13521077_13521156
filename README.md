@@ -26,10 +26,18 @@ The installer can be downloaded from https://nodejs.org/en/download then follow 
 
 ## **How to Run The Program**
 ### How to Run The Web Program
-* Open folder where this repository is saved
-* Go to `Web/src` folder
-* Open `index.html` file by double click the file or select the `index.html` file <br>
-and right-click to select a browser to display the page in the "Open With"
+* There are two alternatives to run the web program: <br>
+  a. Run programs from folders
+     * Open folder where this repository is saved
+     * Go to `Web/src` folder
+     * Open `index.html` file by double click the file or select the `index.html` file
+       > You can choose the browser by select the `index.html` file, right-click, and choose browser in the "Open With"
+  
+  b. Run programs from terminal
+     * Open the teminal/command prompt.
+     * Locate your path to /Console/Web/src
+     * Run the program by typing : `node app.js`
+     * Open local host 3000 according to the port on app.js
 * Enter a file by choose the "Choose File" button then selec one of the files in the test folder.
 * Wait until the map is completely loaded along with the nodes or markers
 > Note that on the page there are two maps : <br>The left map for determining routes with the UCS algorithm<br> The right map for determining routes with the A* algorithm.
@@ -41,7 +49,7 @@ and right-click to select a browser to display the page in the "Open With"
 
 ### How to Run The Console Program
 * Open the teminal/command prompt.
-* Locate your path to /Console/Web/src
+* Locate your path to /Console/src
 * Compile and run the mainProgram in the terminal by typing : <br>
 `node mainProgram.js`
 
