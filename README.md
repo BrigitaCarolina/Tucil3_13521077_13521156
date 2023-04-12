@@ -115,7 +115,9 @@ Tucil3_13521077_13521156
  │   │   ├── package-lock.json
  │   │   └── package.json     
  │   └── test
- ├── program.png
+ ├── formatInput.png
+ ├── program1.png
+ ├── program2.png
  └── README.md
 ```
 
